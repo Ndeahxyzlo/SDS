@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Surti Diesel Sánchez S.A.S — Repuestos Diesel de Alta Calidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;--dark:#0f0f0f;--card:#141414;--card2:#1c1c1c;--border:#252525;
+  --red:#cc0000;--red2:#ff2222;--red3:#990000;
+  --white:#f0f0f0;--muted:#6a7280;--steel:#8a9ab0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope','Segoe UI',system-ui,sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,.nav-logo-text .t1,.footer-brand-logo .t1,.stat-num,.mg-label,.hero-badge,.section-label,.cat-name,.psm-name,.service-title,.why-item-title,.ci-label,.brand-pill,.nav-links a,.cta-text h2{font-family:'Sora','Manrope',sans-serif}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+
+/* ── NAVBAR ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(8,8,8,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:height .35s cubic-bezier(.25,.46,.45,.94),background .35s ease,box-shadow .35s ease,backdrop-filter .35s ease}
+nav.scrolled{height:60px}
+.nav-logo{display:flex;align-items:center;gap:13px;text-decoration:none}
+.nav-logo img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--red)}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.18}
+.nav-logo-text .t1{font-size:1.12rem;font-weight:700;color:var(--white);letter-spacing:.2px}
+.nav-logo-text .t2{font-size:.6rem;font-weight:600;color:var(--red);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:30px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--steel);font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--red2)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:11px 26px;border-radius:3px;transition:background .2s!important;font-size:.8rem!important}
+.nav-cta:hover{background:var(--red2)!important}
+
+/* ── META SOCIAL FLOATING BAR ── */
+.social-float{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:800;display:flex;flex-direction:column;gap:2px}
+.sf-btn{width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;transition:width .3s ease,opacity .2s;overflow:hidden;position:relative;text-decoration:none}
+.sf-btn:hover{width:130px}
+.sf-btn svg{flex-shrink:0;width:22px;height:22px}
+.sf-label{display:none;font-size:.72rem;font-weight:800;letter-spacing:.5px;white-space:nowrap;padding-left:8px;color:#fff}
+.sf-btn:hover .sf-label{display:block}
+.sf-wa{background:#25d366}.sf-fb{background:#1877f2}.sf-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.sf-tk{background:#010101}
+.sf-btn-label{position:absolute;right:100%;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.85);color:#fff;padding:4px 10px;font-size:.7rem;white-space:nowrap;border-radius:2px 0 0 2px;opacity:0;pointer-events:none;transition:opacity .2s}
+.wa-float{position:fixed;bottom:28px;right:20px;z-index:800;background:#25d366;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:waPulse 2.5s infinite;text-decoration:none}
+.wa-float svg{width:28px;height:28px}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.7)}}
+.back-top{position:fixed;bottom:28px;left:20px;z-index:800;background:var(--red);border:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s}
+.back-top.show{opacity:1;transform:translateY(0)}
+.back-top svg{width:20px;height:20px}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 5%;padding-top:76px}
+html{scroll-padding-top:76px}
+.hero-photo{position:absolute;inset:0;background-image:url('imagenesal/hero-diesel-bg.jpg');background-size:cover;background-position:center 35%;filter:saturate(1.15) contrast(1.05)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 78% 45%,rgba(180,0,0,.2) 0%,transparent 60%),linear-gradient(100deg,rgba(5,5,7,.96) 0%,rgba(5,5,7,.88) 26%,rgba(6,6,8,.5) 52%,rgba(6,6,8,.3) 78%,rgba(6,6,8,.38) 100%)}
+.hero-content{position:relative;max-width:680px;z-index:2}
+.hero-logo-img{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--red);margin-bottom:24px;box-shadow:0 0 30px rgba(204,0,0,.3);animation:heroBadge .8s ease both}
+@keyframes heroBadge{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(204,0,0,.1);border:1px solid rgba(204,0,0,.3);color:#ff6666;padding:6px 14px;border-radius:2px;font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px;animation:fadeUp .7s .2s ease both}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+.hero h1{font-size:clamp(2.4rem,5vw,4.6rem);font-weight:700;line-height:1.06;letter-spacing:-1px;margin-bottom:22px;animation:fadeUp .7s .35s ease both}
+.hero h1 .r{color:var(--red);display:block}
+.hero h1 .w{color:var(--white);display:block}
+.hero p{font-size:.97rem;color:var(--muted);line-height:1.85;max-width:500px;margin-bottom:36px;animation:fadeUp .7s .5s ease both}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .7s .65s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:32px;border-top:1px solid var(--border);animation:fadeUp .7s .8s ease both;flex-wrap:wrap}
+.stat-item{display:flex;flex-direction:column;gap:4px}
+.stat-num{font-size:1.9rem;font-weight:700;color:var(--red);line-height:1}
+.stat-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;font-weight:800;font-size:.88rem;padding:14px 30px;border-radius:3px;text-decoration:none;transition:transform .2s,background .2s,box-shadow .2s;cursor:pointer;border:none}
+.btn-primary:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(204,0,0,.4)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);font-weight:700;font-size:.88rem;padding:14px 28px;border-radius:3px;border:1px solid var(--border);text-decoration:none;transition:border-color .2s,color .2s;cursor:pointer}
+.btn-outline:hover{border-color:var(--red);color:var(--red2)}
+
+/* ── MARQUEE ── */
+.marquee-strip{background:var(--red);padding:13px 0;overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;animation:marquee 30s linear infinite}
+.marquee-inner span{font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;padding:0 28px;opacity:.92}
+.marquee-inner span::before{content:'◆';margin-right:12px;opacity:.4;font-size:.5rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTIONS ── */
+section{padding:128px 5%}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.section-label::before{content:'';width:22px;height:2px;background:var(--red)}
+.section-title{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.5px;line-height:1.18;margin-bottom:16px}
+.section-title span{color:var(--red)}
+.section-sub{color:var(--muted);font-size:.95rem;line-height:1.75;max-width:520px;margin-bottom:60px}
+
+/* ── CATEGORIES ── */
+.categories{background:var(--dark)}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:34px 26px;position:relative;overflow:hidden;cursor:pointer;transition:border-color .3s,transform .3s;text-decoration:none;display:block}
+.cat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.cat-card:hover{border-color:rgba(204,0,0,.45);transform:translateY(-4px)}
+.cat-card:hover::after{transform:scaleX(1)}
+.cat-icon{font-size:2rem;margin-bottom:16px;display:block;line-height:1}
+.cat-name{font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.cat-desc{font-size:.76rem;color:var(--muted);line-height:1.6}
+.cat-arrow{position:absolute;top:16px;right:16px;color:var(--red);font-size:1rem;opacity:0;transform:translate(-5px,5px);transition:opacity .3s,transform .3s}
+.cat-card:hover .cat-arrow{opacity:1;transform:translate(0,0)}
+
+/* ── CATALOG ── */
+.catalog{background:var(--black)}
+.catalog-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.catalog-search{display:flex;align-items:center;gap:0;flex:1;max-width:440px}
+.catalog-search input{flex:1;background:var(--card);border:1px solid var(--border);color:var(--white);font-size:.92rem;padding:15px 18px;border-radius:4px 0 0 4px;outline:none;transition:border-color .2s,box-shadow .2s;font-family:inherit}
+.catalog-search input:focus{border-color:var(--red)}
+.catalog-search input::placeholder{color:var(--muted)}
+.catalog-search button{background:var(--red);border:none;color:#fff;padding:15px 20px;border-radius:0 4px 4px 0;cursor:pointer;font-size:1rem;transition:background .2s}
+.catalog-search button:hover{background:var(--red2)}
+.catalog-count{font-size:.8rem;font-weight:700;letter-spacing:.5px;color:var(--red2);align-self:center}
+.badge-stock{background:var(--red);color:#fff}
+.badge-kit{background:#1565c0;color:#fff}
+.badge-importado{background:#e65100;color:#fff}
+.catalog-empty{display:none;text-align:center;padding:80px 20px;color:var(--muted)}
+.catalog-empty.show{display:block}
+.catalog-empty p{font-size:1rem;margin-top:12px}
+
+/* ── CATALOG CONTROLS ── */
+.catalog-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+
+/* ── MOTOR GROUPS (ACORDEÓN) ── */
+.motor-group{border:1px solid var(--border);margin-bottom:2px;overflow:hidden;border-radius:4px;transition:border-color .3s}
+.motor-group:hover{border-color:rgba(204,0,0,.25)}
+.mg-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;cursor:pointer;background:var(--card);user-select:none;transition:background .2s;gap:12px}
+.mg-header:hover{background:var(--card2)}
+.mg-accent{width:3px;height:26px;border-radius:2px;flex-shrink:0;background:var(--g-accent,var(--red))}
+.mg-left{display:flex;align-items:center;gap:11px;flex:1;min-width:0}
+.mg-emoji{font-size:1rem;flex-shrink:0;line-height:1;display:inline-block;transition:transform .25s ease}
+.mg-header:hover .mg-emoji{transform:scale(1.1)}
+.mg-label{font-size:.82rem;font-weight:600;letter-spacing:.2px;color:var(--white);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mg-desc{font-size:.62rem;color:var(--muted);letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mg-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.mg-count{font-size:.6rem;font-weight:700;color:var(--g-accent,var(--red));background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:2px 8px;border-radius:20px;white-space:nowrap}
+.mg-count.zero{color:var(--muted);opacity:.5}
+.mg-arrow{color:var(--muted);font-size:.75rem;transition:transform .3s;display:inline-block;line-height:1}
+.mg-header.open .mg-arrow{transform:rotate(180deg)}
+.mg-body{display:none;border-top:1px solid var(--border)}
+.mg-body.open{display:block}
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;background:transparent;padding:18px}
+
+/* ── COMPACT PRODUCT CARDS ── */
+.prod-sm{background:var(--card);overflow:hidden;transition:transform .25s;position:relative}
+.prod-sm:hover{transform:translateY(-2px)}
+.prod-sm.hidden{display:none}
+.psm-img{height:155px;overflow:hidden;position:relative;background:var(--card2);cursor:pointer}
+.psm-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.prod-sm:hover .psm-img img{transform:scale(1.03)}
+.psm-badge{position:absolute;top:6px;left:6px;font-size:.5rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:2px 7px;z-index:2}
+.psm-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .3s;pointer-events:none}
+.prod-sm:hover .psm-overlay{background:rgba(204,0,0,.13)}
+.psm-zoom{opacity:0;color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:rgba(204,0,0,.88);padding:5px 11px;border-radius:2px;transition:opacity .3s}
+.prod-sm:hover .psm-zoom{opacity:1}
+.psm-info{padding:11px 13px 13px}
+.psm-cat{font-size:.52rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--red);margin-bottom:3px}
+.psm-name{font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:2px;line-height:1.3}
+.psm-brand{font-size:.65rem;color:var(--muted);margin-bottom:7px}
+.psm-app{font-size:.6rem;color:var(--steel);margin-bottom:9px;display:flex;align-items:center;gap:4px;line-height:1.4}
+.psm-btn{width:100%;background:var(--red);border:none;color:#fff;font-size:.67rem;font-weight:800;padding:8px 6px;border-radius:2px;cursor:pointer;transition:background .2s;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:5px}
+.psm-btn:hover{background:var(--red2)}
+
+/* ── WHY US ── */
+.why{background:var(--dark)}
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-img-area{position:relative}
+.why-img-box{background:var(--card);border:1px solid var(--border);height:480px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.why-img-box img{width:100%;height:100%;object-fit:cover}
+.why-badge{position:absolute;bottom:-18px;right:-18px;background:var(--red);color:#fff;padding:20px 24px;font-weight:700;font-family:'Sora','Manrope',sans-serif;text-align:center;z-index:2}
+.why-badge .big{font-size:2.2rem;display:block;line-height:1}
+.why-badge .sm{font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.85}
+.why-list{display:flex;flex-direction:column;gap:24px}
+.why-item{display:flex;gap:16px;align-items:flex-start}
+.why-icon{flex-shrink:0;width:44px;height:44px;background:rgba(204,0,0,.09);border:1px solid rgba(204,0,0,.18);display:flex;align-items:center;justify-content:center;font-size:1.2rem;border-radius:3px}
+.why-item-title{font-size:.95rem;font-weight:700;margin-bottom:5px;color:var(--white)}
+.why-item-desc{font-size:.8rem;color:var(--muted);line-height:1.7}
+
+/* ── BRANDS ── */
+.brands{background:var(--black);padding:70px 5%;text-align:center}
+.brands-label{font-size:.67rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:32px}
+.brands-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.brand-pill{background:var(--card);border:1px solid var(--border);padding:14px 28px;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);transition:color .2s,border-color .2s;cursor:default}
+.brand-pill:hover{color:var(--red2);border-color:rgba(204,0,0,.3)}
+
+/* ── SERVICES ── */
+.services{background:var(--dark)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:36px 28px;position:relative;transition:border-color .3s}
+.service-card:hover{border-color:rgba(204,0,0,.35)}
+.service-num{font-size:3.5rem;font-weight:900;color:rgba(204,0,0,.07);line-height:1;position:absolute;top:20px;right:20px;font-family:monospace;pointer-events:none}
+.service-icon{font-size:1.8rem;margin-bottom:16px;display:block}
+.service-title{font-size:.97rem;font-weight:800;margin-bottom:9px;color:var(--white)}
+.service-desc{font-size:.8rem;color:var(--muted);line-height:1.7}
+.service-tag{display:inline-block;margin-top:16px;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);border-bottom:1px solid rgba(204,0,0,.3);padding-bottom:2px}
+
+/* ── CONTACT ── */
+.contact-bar{background:var(--dark);padding:100px 5%}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.contact-item{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:32px 24px;transition:border-color .3s;text-decoration:none;display:block;color:inherit}
+.contact-item:hover{border-color:rgba(204,0,0,.3)}
+.contact-item-priority{border-left:3px solid var(--red);background:linear-gradient(160deg,var(--card2),var(--card))}
+.contact-item-priority .ci-label{color:var(--red2)}
+.contact-item-priority .ci-val{font-size:1.05rem}
+.ci-whatsapp{border-left-color:#25d366}
+.ci-whatsapp .ci-label{color:#3ddc80}
+.ci-whatsapp:hover{border-color:rgba(37,211,102,.4)}
+.ci-icon{font-size:1.4rem;margin-bottom:12px;display:block}
+.ci-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.ci-val{font-size:.9rem;font-weight:700;color:var(--white)}
+.ci-sub{font-size:.73rem;color:var(--muted);margin-top:3px}
+.contact-meta{margin-top:48px}
+.contact-meta h3{font-size:1.1rem;font-weight:800;margin-bottom:20px;color:var(--white)}
+.meta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.meta-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.85rem;transition:transform .2s,box-shadow .2s}
+.meta-btn:hover{transform:translateY(-2px)}
+.mb-wa{background:#25d366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.2)}
+.mb-wa:hover{box-shadow:0 6px 24px rgba(37,211,102,.35)}
+.mb-fb{background:#1877f2;color:#fff;box-shadow:0 4px 16px rgba(24,119,242,.2)}
+.mb-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;box-shadow:0 4px 16px rgba(220,39,67,.2)}
+.mb-tk{background:#010101;color:#fff;border:1px solid #333;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+
+/* ── CTA BANNER ── */
+.cta-banner{background:var(--red);padding:76px 5%;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;right:-50px;top:-50px;width:260px;height:260px;border-radius:50%;border:40px solid rgba(0,0,0,.07)}
+.cta-banner::after{content:'';position:absolute;left:28%;bottom:-70px;width:180px;height:180px;border-radius:50%;border:28px solid rgba(0,0,0,.05)}
+.cta-text h2{font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;color:#fff;letter-spacing:-.5px;margin-bottom:8px}
+.cta-text p{color:rgba(255,255,255,.7);font-size:.95rem}
+.btn-dark{display:inline-flex;align-items:center;gap:10px;background:var(--black);color:var(--white);font-weight:800;font-size:.88rem;padding:15px 32px;border-radius:3px;text-decoration:none;transition:transform .2s,box-shadow .2s;position:relative;z-index:1;cursor:pointer;border:none}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid var(--border);padding:72px 5% 30px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-brand-logo{display:flex;align-items:center;gap:12px}
+.footer-brand-logo img{width:44px;height:44px;border-radius:50%;border:2px solid var(--red)}
+.footer-brand-logo .t1{font-size:.95rem;font-weight:700;color:var(--white)}
+.footer-brand-logo .t2{font-size:.56rem;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase}
+.footer-brand p{font-size:.8rem;color:var(--muted);line-height:1.8;max-width:260px}
+.footer-social{display:flex;gap:8px}
+.fsoc-btn{width:34px;height:34px;border-radius:3px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s,opacity .2s;opacity:.85}
+.fsoc-btn:hover{transform:scale(1.1);opacity:1}
+.fsoc-wa{background:#25d366}.fsoc-fb{background:#1877f2}.fsoc-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.fsoc-tk{background:#010101;border:1px solid #333}
+.footer-col h4{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{text-decoration:none;font-size:.8rem;color:var(--muted);transition:color .2s}
+.footer-col a:hover{color:var(--red2)}
+.footer-bottom{padding-top:26px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:.73rem;color:var(--muted)}
+.footer-bottom span{color:var(--red)}
+
+/* ── MODAL COTIZACIÓN ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--red);max-width:500px;width:100%;padding:38px;position:relative;animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;transition:color .2s}
+.modal-close:hover{color:var(--red2)}
+.modal h3{font-size:1.15rem;font-weight:700;font-family:'Sora','Manrope',sans-serif;margin-bottom:6px}
+.modal p{font-size:.83rem;color:var(--muted);line-height:1.7;margin-bottom:22px}
+.modal-form{display:flex;flex-direction:column;gap:12px}
+.modal-form input,.modal-form textarea,.modal-form select{background:var(--card2);border:1px solid var(--border);color:var(--white);font-size:.85rem;padding:11px 13px;border-radius:2px;width:100%;outline:none;transition:border-color .2s;font-family:inherit}
+.modal-form input:focus,.modal-form textarea:focus,.modal-form select:focus{border-color:var(--red)}
+.modal-form textarea{resize:vertical;min-height:90px}
+.modal-form select option{background:var(--card2)}
+.modal-form button{background:var(--red);color:#fff;border:none;font-size:.87rem;font-weight:800;padding:13px;border-radius:2px;cursor:pointer;transition:background .2s;letter-spacing:.5px}
+.modal-form button:hover{background:var(--red2)}
+
+/* ── PRODUCT LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:3000;align-items:center;justify-content:center;padding:20px}
+.lightbox.open{display:flex}
+.lb-inner{max-width:480px;width:100%;background:var(--card);border:1px solid var(--border);overflow:hidden;animation:modalIn .2s ease;position:relative}
+.lb-inner img{width:100%;height:320px;object-fit:cover}
+.lb-info{padding:22px}
+.lb-cat{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:7px}
+.lb-name{font-size:1.1rem;font-weight:700;font-family:'Sora','Manrope',sans-serif;margin-bottom:4px}
+.lb-brand{font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.lb-app{font-size:.77rem;color:var(--steel);margin-bottom:18px}
+.lb-close{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.lb-close:hover{background:var(--red)}
+
+/* ── SCROLL REVEAL VARIANTS ── */
+.fade-up{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-in{opacity:0;transition:opacity .7s ease}
+.fade-in.visible{opacity:1}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .6s ease,transform .6s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.94);transition:opacity .6s ease,transform .6s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+/* Stagger — sequential delay for items within the same grid/list */
+.cat-grid>.cat-card:nth-child(1),.services-grid>.service-card:nth-child(1),.contact-grid>.contact-item:nth-child(1),.why-list>.why-item:nth-child(1),.brands-row>.brand-pill:nth-child(1),.mg-grid>.prod-sm:nth-child(1){transition-delay:0s}
+.cat-grid>.cat-card:nth-child(2),.services-grid>.service-card:nth-child(2),.contact-grid>.contact-item:nth-child(2),.why-list>.why-item:nth-child(2),.brands-row>.brand-pill:nth-child(2),.mg-grid>.prod-sm:nth-child(2){transition-delay:.07s}
+.cat-grid>.cat-card:nth-child(3),.services-grid>.service-card:nth-child(3),.contact-grid>.contact-item:nth-child(3),.why-list>.why-item:nth-child(3),.brands-row>.brand-pill:nth-child(3),.mg-grid>.prod-sm:nth-child(3){transition-delay:.14s}
+.cat-grid>.cat-card:nth-child(4),.services-grid>.service-card:nth-child(4),.contact-grid>.contact-item:nth-child(4),.why-list>.why-item:nth-child(4),.brands-row>.brand-pill:nth-child(4),.mg-grid>.prod-sm:nth-child(4){transition-delay:.21s}
+.cat-grid>.cat-card:nth-child(5),.services-grid>.service-card:nth-child(5),.contact-grid>.contact-item:nth-child(5),.brands-row>.brand-pill:nth-child(5),.mg-grid>.prod-sm:nth-child(5){transition-delay:.28s}
+.cat-grid>.cat-card:nth-child(6),.services-grid>.service-card:nth-child(6),.brands-row>.brand-pill:nth-child(6),.mg-grid>.prod-sm:nth-child(6){transition-delay:.35s}
+.cat-grid>.cat-card:nth-child(7),.brands-row>.brand-pill:nth-child(7),.mg-grid>.prod-sm:nth-child(7){transition-delay:.42s}
+.cat-grid>.cat-card:nth-child(8),.brands-row>.brand-pill:nth-child(8),.mg-grid>.prod-sm:nth-child(8){transition-delay:.49s}
+.brands-row>.brand-pill:nth-child(9),.mg-grid>.prod-sm:nth-child(9){transition-delay:.56s}
+.brands-row>.brand-pill:nth-child(10),.mg-grid>.prod-sm:nth-child(10){transition-delay:.63s}
+.brands-row>.brand-pill:nth-child(11){transition-delay:.7s}
+.brands-row>.brand-pill:nth-child(12){transition-delay:.77s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-links{display:none}
+  .why-layout,.services-grid,.contact-grid,.footer-top{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .why-badge{bottom:10px;right:10px}
+  .social-float{display:none}
+}
+@media(max-width:768px){
+  section{padding:88px 6%}
+  .hero{padding-top:76px;min-height:92vh}
+  .contact-bar{padding:80px 6%}
+  .brands{padding:52px 6%}
+  .cta-banner{padding:52px 6%;flex-direction:column;text-align:center;gap:22px}
+  .catalog-top,.catalog-controls{flex-direction:column;align-items:stretch}
+  .catalog-search{max-width:none}
+  .why-img-box{height:340px}
+  .footer-top{gap:36px}
+}
+@media(max-width:520px){
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn-primary,.hero-actions .btn-whatsapp{justify-content:center;text-align:center}
+  .hero-stats{gap:24px 28px}
+  .cta-banner .btn-dark{width:100%;justify-content:center}
+  .footer-bottom{flex-direction:column;text-align:center;gap:10px}
+  .mg-desc{display:none}
+  .mg-header{padding:12px 14px}
+}
+
+/* ══════════════════════════════════════════════════
+   ✦ ENHANCED VISUAL THEME — PREMIUM UPGRADE
+   ══════════════════════════════════════════════════ */
+
+/* Enhanced variables — deeper blacks, richer reds */
+:root{
+  --black:#07070b;
+  --dark:#0c0c14;
+  --card:#111119;
+  --card2:#16161f;
+  --border:#1e1e2c;
+  --red:#d40000;
+  --red2:#ff2222;
+  --red3:#8a0000;
+  --white:#f0f0f8;
+  --muted:#62627a;
+  --steel:#8898b8;
+}
+
+/* Gradient scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(to bottom,#8a0000,#d40000,#ff4444);
+  border-radius:2px;
+}
+
+/* ── ENHANCED NAVBAR ── */
+nav{
+  background:rgba(7,7,11,.85);
+  backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid rgba(212,0,0,.1);
+}
+nav.scrolled{
+  background:rgba(7,7,11,.97);
+  backdrop-filter:blur(22px) saturate(160%);
+  border-bottom-color:rgba(212,0,0,.16);
+  box-shadow:0 8px 28px rgba(0,0,0,.45);
+}
+.nav-logo img{
+  width:54px;height:54px;
+  box-shadow:0 0 0 2px var(--red);
+  transition:box-shadow .3s ease,width .35s ease,height .35s ease;
+}
+nav.scrolled .nav-logo img{width:40px;height:40px}
+.nav-logo:hover img{box-shadow:0 0 0 2px var(--red2)}
+.nav-logo-text{transition:opacity .3s ease,transform .3s ease}
+nav.scrolled .nav-logo-text .t2{display:none}
+.nav-links a{
+  position:relative;
+  transition:color .25s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0;height:2px;
+  background:var(--red);
+  transition:width .3s ease;
+}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  background:linear-gradient(160deg,#c00000,#900000)!important;
+  box-shadow:0 3px 12px rgba(153,0,0,.35)!important;
+  font-weight:700!important;
+  border:1px solid rgba(255,80,80,.25)!important;
+}
+.nav-cta:hover{
+  background:linear-gradient(160deg,#d40000,#a30000)!important;
+  box-shadow:0 6px 18px rgba(153,0,0,.45)!important;
+  transform:translateY(-2px);
+}
+
+/* ── ENHANCED HERO ── */
+.hero-logo-img{
+  box-shadow:0 0 0 3px var(--red),0 6px 24px rgba(0,0,0,.5);
+}
+.hero-badge{
+  background:rgba(212,0,0,.1);
+  border:1px solid rgba(212,0,0,.4);
+  color:#ff9999;
+  letter-spacing:3px;
+}
+.hero h1 .r{
+  background:linear-gradient(135deg,#ff7777 0%,#ff2222 40%,#990000 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero h1 .w{color:#ffffff}
+.stat-num{color:var(--red2)}
+.hero-stats{
+  border-top:1px solid rgba(212,0,0,.14);
+  gap:36px;
+}
+.stat-item{position:relative}
+.stat-item::after{
+  content:'';position:absolute;bottom:-16px;left:0;
+  width:20px;height:2px;
+  background:var(--red);
+  opacity:.4;
+  border-radius:1px;
+}
+
+/* ── BUTTONS ── */
+.btn-primary,.btn-whatsapp,.btn-dark,.btn-outline{
+  font-family:'Sora','Manrope',sans-serif;letter-spacing:.3px;
+  transition:transform .25s ease,background .25s ease,box-shadow .25s ease,border-color .25s ease,color .25s ease;
+}
+.btn-primary{
+  background:linear-gradient(160deg,#c00000,#900000);
+  box-shadow:0 4px 16px rgba(153,0,0,.3);
+}
+.btn-primary:hover{
+  background:linear-gradient(160deg,#d40000,#a30000);
+  box-shadow:0 8px 22px rgba(153,0,0,.4);
+  transform:translateY(-2px);
+}
+.btn-whatsapp{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#1da851;color:#fff;font-weight:700;font-size:.88rem;
+  padding:14px 30px;border-radius:3px;text-decoration:none;cursor:pointer;border:none;
+  box-shadow:0 4px 16px rgba(29,168,81,.3);
+}
+.btn-whatsapp:hover{background:#22c05e;box-shadow:0 8px 22px rgba(29,168,81,.4);transform:translateY(-2px)}
+.btn-outline{
+  border-color:rgba(212,0,0,.25);
+  transition:border-color .25s,color .25s,background .25s,transform .25s;
+}
+.btn-outline:hover{
+  border-color:rgba(212,0,0,.6);
+  background:rgba(212,0,0,.06);
+  color:var(--red2);
+  transform:translateY(-2px);
+}
+.btn-dark{
+  background:rgba(7,7,11,.92);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 4px 16px rgba(0,0,0,.4);
+}
+.btn-dark:hover{
+  box-shadow:0 8px 22px rgba(0,0,0,.5),0 0 0 1px rgba(212,0,0,.25);
+  transform:translateY(-2px);
+}
+
+/* ── ENHANCED MARQUEE ── */
+.marquee-strip{
+  background:linear-gradient(90deg,#7a0000,#c00000 50%,#7a0000);
+  border-top:1px solid rgba(255,100,100,.1);
+  border-bottom:1px solid rgba(0,0,0,.5);
+}
+.marquee-inner span::before{
+  content:'◆';margin-right:12px;opacity:.35;font-size:.5rem;
+  color:rgba(255,200,200,.6);
+}
+
+/* ── GLOW LINE ── */
+.glow-line{
+  height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(212,0,0,.4) 50%,transparent 100%);
+  opacity:.5;
+}
+
+/* ── ENHANCED SECTION LABELS & TITLES ── */
+.section-label{
+  color:var(--red);
+  letter-spacing:4px;
+}
+.section-label::before{
+  width:28px;height:2px;
+  background:var(--red);
+}
+.section-title span{color:var(--red2)}
+
+/* ── ENHANCED CATEGORIES ── */
+.categories{background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0px,rgba(255,255,255,.012) 1px,transparent 1px,transparent 42px),linear-gradient(160deg,var(--dark),#0a0a12)}
+.cat-card{
+  background:linear-gradient(160deg,#111119,#16161f);
+  transition:transform .3s ease,border-color .3s,box-shadow .3s;
+}
+.cat-card:hover{
+  border-color:rgba(212,0,0,.45);
+  transform:translateY(-4px);
+  box-shadow:0 14px 32px rgba(0,0,0,.45);
+}
+.cat-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--red);
+  opacity:0;transition:opacity .3s;
+}
+.cat-card:hover::before{opacity:1}
+.cat-icon{
+  transition:transform .3s ease;
+  display:inline-block;
+}
+.cat-card:hover .cat-icon{transform:scale(1.1)}
+
+/* ── ENHANCED CATALOG ── */
+.catalog{background:repeating-linear-gradient(135deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) 1px,transparent 1px,transparent 42px),var(--black)}
+.catalog-search input:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(212,0,0,.12);
+}
+
+/* ── ENHANCED MOTOR GROUPS ── */
+.motor-group{
+  border-radius:4px;
+  margin-bottom:6px;
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  transition:border-color .3s,box-shadow .3s;
+}
+.motor-group:hover{
+  border-color:var(--g-accent,var(--red));
+  box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+.mg-header{
+  background:transparent;
+  border-radius:4px;
+  transition:background .3s;
+}
+.mg-header:hover{
+  background:color-mix(in srgb,var(--g-accent,var(--red)) 6%,transparent);
+}
+.mg-header.open{
+  background:color-mix(in srgb,var(--g-accent,var(--red)) 10%,transparent);
+  border-radius:4px 4px 0 0;
+}
+.mg-arrow{
+  width:20px;height:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.55rem;
+  transition:transform .3s ease,background .3s,border-color .3s;
+}
+.mg-header.open .mg-arrow{
+  transform:rotate(180deg);
+  background:color-mix(in srgb,var(--g-accent,var(--red)) 18%,transparent);
+  border-color:color-mix(in srgb,var(--g-accent,var(--red)) 40%,transparent);
+}
+.mg-body.open{
+  animation:slideDown .2s ease both;
+}
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.mg-count{
+  background:color-mix(in srgb,var(--g-accent,var(--red)) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--g-accent,var(--red)) 32%,transparent);
+  color:color-mix(in srgb,var(--g-accent,var(--red)) 90%,#fff);
+  border-radius:20px;
+  font-size:.58rem;font-weight:700;
+  padding:2px 8px;
+}
+.mg-accent{border-radius:3px}
+
+/* ── ENHANCED PRODUCT CARDS ── */
+.prod-sm{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border:1px solid var(--border);
+  border-bottom:2px solid transparent;
+  border-radius:6px;
+  transition:transform .3s ease,border-color .3s,box-shadow .3s;
+}
+.prod-sm:hover{
+  transform:translateY(-4px);
+  border-color:rgba(212,0,0,.35);
+  border-bottom-color:var(--red);
+  box-shadow:0 14px 32px rgba(0,0,0,.4);
+}
+.psm-img{height:190px}
+.psm-overlay{
+  background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 55%);
+  transition:background .3s;
+}
+.prod-sm:hover .psm-overlay{
+  background:linear-gradient(to top,rgba(212,0,0,.3) 0%,rgba(212,0,0,.05) 40%,transparent 70%);
+}
+.psm-zoom{
+  background:rgba(212,0,0,.92);
+  padding:6px 14px;border-radius:3px;
+  font-size:.65rem;letter-spacing:1px;font-weight:700;
+}
+.psm-btn{
+  background:linear-gradient(160deg,#c00000,#900000);
+  transition:background .25s,box-shadow .25s;
+  padding:9px 6px;font-size:.7rem;
+}
+.psm-btn:hover{
+  background:linear-gradient(160deg,#d40000,#a30000);
+  box-shadow:0 4px 14px rgba(153,0,0,.4);
+}
+.badge-stock{background:#a10000;border-radius:3px}
+.badge-kit{background:#0d47a1;border-radius:3px}
+.badge-importado{background:#c04a12;border-radius:3px}
+
+/* ── ENHANCED WHY US ── */
+.why{background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0px,rgba(255,255,255,.012) 1px,transparent 1px,transparent 42px),linear-gradient(160deg,var(--dark),#09091400 50%,var(--dark))}
+.why-img-box{
+  border:1px solid rgba(212,0,0,.12);
+  border-radius:4px;overflow:hidden;
+}
+.why-badge{
+  background:linear-gradient(160deg,#c00000,#900000);
+  box-shadow:6px 6px 0 rgba(0,0,0,.35);
+  border-radius:4px;
+}
+.why-icon{
+  background:radial-gradient(ellipse at center,rgba(212,0,0,.12),rgba(212,0,0,.04));
+  border:1px solid rgba(212,0,0,.22);
+  border-radius:8px;
+  transition:transform .3s ease,border-color .3s;
+}
+.why-item:hover .why-icon{
+  transform:scale(1.1);
+  border-color:rgba(212,0,0,.5);
+}
+
+/* ── ENHANCED BRANDS ── */
+.brands{background:linear-gradient(to bottom,var(--black),var(--dark))}
+.brand-pill{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border-radius:4px;
+  transition:color .25s,border-color .25s,transform .25s;
+}
+.brand-pill:hover{
+  color:var(--red2);
+  border-color:rgba(212,0,0,.35);
+  transform:translateY(-3px);
+}
+
+/* ── ENHANCED SERVICES ── */
+.services{background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0px,rgba(255,255,255,.012) 1px,transparent 1px,transparent 42px),linear-gradient(160deg,var(--dark),#080810)}
+.service-card{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border-radius:6px;
+  transition:border-color .3s,transform .3s ease,box-shadow .3s;
+}
+.service-card:hover{
+  border-color:rgba(212,0,0,.4);
+  transform:translateY(-5px);
+  box-shadow:0 14px 32px rgba(0,0,0,.4);
+}
+.service-icon{display:inline-block;transition:transform .3s ease}
+.service-card:hover .service-icon{transform:scale(1.1)}
+.service-num{color:rgba(212,0,0,.1)}
+
+/* ── ENHANCED CONTACT ── */
+.contact-bar{background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0px,rgba(255,255,255,.012) 1px,transparent 1px,transparent 42px),linear-gradient(160deg,var(--dark),var(--black))}
+.contact-item{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border-radius:6px;
+  transition:border-color .3s,transform .3s ease,box-shadow .3s;
+}
+.contact-item:hover{
+  border-color:rgba(212,0,0,.4);
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(0,0,0,.4);
+}
+.ci-icon{display:inline-block;font-size:1.7rem;transition:transform .3s ease}
+.contact-item:hover .ci-icon{transform:scale(1.1)}
+
+/* ── ENHANCED CTA BANNER ── */
+.cta-banner{
+  background:linear-gradient(135deg,#7a0000,#b30000,#7a0000);
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  width:360px;height:360px;border-width:48px;
+  top:-60px;right:-60px;
+  border-color:rgba(0,0,0,.07);
+}
+.cta-banner::after{
+  width:200px;height:200px;border-width:30px;
+  left:25%;bottom:-80px;
+  border-color:rgba(0,0,0,.05);
+}
+
+/* ── ENHANCED SOCIAL FLOAT ── */
+.sf-btn{
+  transition:width .3s ease,box-shadow .3s;
+  border-left:1px solid rgba(255,255,255,.06);
+}
+.sf-wa:hover{box-shadow:-4px 0 16px rgba(37,211,102,.4)}
+.sf-fb:hover{box-shadow:-4px 0 16px rgba(24,119,242,.4)}
+.sf-ig:hover{box-shadow:-4px 0 16px rgba(220,39,67,.4)}
+.sf-tk:hover{box-shadow:-4px 0 14px rgba(255,255,255,.15)}
+.wa-float{
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  transition:transform .25s ease,box-shadow .3s;
+}
+.wa-float:hover{
+  transform:scale(1.08);
+  box-shadow:0 8px 28px rgba(37,211,102,.55);
+}
+
+/* ── ENHANCED SOCIAL META BUTTONS ── */
+.mb-wa{box-shadow:0 4px 14px rgba(37,211,102,.22)}
+.mb-wa:hover{box-shadow:0 6px 20px rgba(37,211,102,.35);transform:translateY(-2px)}
+.mb-fb{box-shadow:0 4px 14px rgba(24,119,242,.22)}
+.mb-fb:hover{box-shadow:0 6px 20px rgba(24,119,242,.35);transform:translateY(-2px)}
+.mb-ig{box-shadow:0 4px 14px rgba(220,39,67,.22)}
+.mb-ig:hover{box-shadow:0 6px 20px rgba(220,39,67,.35);transform:translateY(-2px)}
+.mb-tk{box-shadow:0 4px 14px rgba(255,255,255,.06)}
+.mb-tk:hover{box-shadow:0 6px 20px rgba(255,255,255,.13);transform:translateY(-2px)}
+
+/* ── ENHANCED FOOTER ── */
+footer{background:linear-gradient(to bottom,var(--black),#04040a)}
+.footer-brand-logo .t1{color:#ffffff}
+.fsoc-btn{
+  border-radius:8px;
+  transition:transform .25s ease,opacity .2s;
+}
+.fsoc-btn:hover{transform:translateY(-2px);opacity:1}
+
+/* ── ENHANCED MODAL ── */
+.modal{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border-radius:8px;
+  border:1px solid rgba(212,0,0,.2);
+  border-top:3px solid var(--red);
+  box-shadow:0 24px 60px rgba(0,0,0,.6);
+}
+.modal-form input,.modal-form textarea,.modal-form select{
+  background:rgba(7,7,11,.8);
+  border-color:rgba(212,0,0,.15);
+  border-radius:4px;
+  transition:border-color .25s,box-shadow .25s;
+}
+.modal-form input:focus,.modal-form textarea:focus,.modal-form select:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(212,0,0,.1);
+}
+.modal-form button{
+  background:linear-gradient(160deg,#c00000,#900000);
+  border-radius:4px;
+  transition:background .25s;
+}
+.modal-form button:hover{background:linear-gradient(160deg,#d40000,#a30000)}
+
+/* ── ENHANCED LIGHTBOX ── */
+.lb-inner{
+  background:linear-gradient(160deg,var(--card),var(--card2));
+  border-radius:8px;
+  border:1px solid rgba(212,0,0,.18);
+  box-shadow:0 30px 70px rgba(0,0,0,.7);
+}
+
+
+/* ── BACK TO TOP ── */
+.back-top{
+  background:linear-gradient(160deg,#c00000,#900000);
+  box-shadow:0 4px 16px rgba(0,0,0,.4);
+  border-radius:50%;
+  transition:opacity .3s,transform .25s ease,box-shadow .3s;
+}
+.back-top.show{opacity:1;transform:translateY(0) scale(1)}
+.back-top:hover{
+  box-shadow:0 8px 32px rgba(212,0,0,.6);
+  transform:translateY(-3px) scale(1.08)!important;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="imagenesal/Logo.jpeg" alt="Surti Diesel Sánchez"/>
+    <div class="nav-logo-text">
+      <span class="t1">Surti Diesel Sánchez</span>
+      <span class="t2">Repuestos diesel · S.A.S</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#categorias">Categorías</a></li>
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal();return false">Cotizar</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ META SOCIAL FLOATING BAR ═══ -->
+<div class="social-float">
+  <a class="sf-btn sf-wa" href="https://wa.me/message/YB372RRAC2OFL1" target="_blank" title="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="sf-label">WhatsApp</span>
+  </a>
+  <a class="sf-btn sf-fb" href="https://www.facebook.com/share/1DCaYgugb8/" target="_blank" title="Facebook">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    <span class="sf-label">Facebook</span>
+  </a>
+  <a class="sf-btn sf-ig" href="https://www.instagram.com/surtidieselsanchezsas?igsh=MWtnMW4ycXpjY2Q4Ng%3D%3D&utm_source=qr" target="_blank" title="Instagram">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    <span class="sf-label">Instagram</span>
+  </a>
+  <a class="sf-btn sf-tk" href="https://www.tiktok.com/@surti.diesel.sanch?_r=1&_t=ZS-96xS9FkqZG6" target="_blank" title="TikTok">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.79 1.52V6.73a4.85 4.85 0 01-1.02-.04z"/></svg>
+    <span class="sf-label">TikTok</span>
+  </a>
+</div>
+
+<!-- WhatsApp flotante -->
+<a class="wa-float" href="https://wa.me/message/YB372RRAC2OFL1" target="_blank">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img src="imagenesal/Logo.jpeg" alt="Logo Surti Diesel Sánchez" class="hero-logo-img"/>
+    <div class="hero-badge">Especialistas en motores diesel · 15+ años</div>
+    <h1>
+      <span class="w">Repuestos Diesel</span>
+      <span class="r">de Alta Calidad</span>
+    </h1>
+    <p>En <strong style="color:var(--white)">Surti Diesel Sánchez S.A.S</strong> suministramos repuestos originales y alternativos para motores diesel de todas las marcas. Stock permanente, asesoría técnica y envíos a todo el país.</p>
+    <div class="hero-actions">
+      <a href="#catalogo" class="btn-primary">Ver catálogo completo &rarr;</a>
+      <a href="https://wa.me/message/YB372RRAC2OFL1" target="_blank" class="btn-whatsapp">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num" data-target="15">0</span><span class="stat-label">Años de experiencia</span></div>
+      <div class="stat-item"><span class="stat-num" data-target="147">0</span><span class="stat-label">Productos en catálogo</span></div>
+      <div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-label">Clientes activos</span></div>
+      <div class="stat-item"><span class="stat-num" id="stat-nat">Todo</span><span class="stat-label">El país envíos</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Turbo Nissan QD32</span><span>Empaques de Culata</span><span>Pistones NKR</span><span>Bombas de Agua NPW</span><span>Fan Clutch NPR</span><span>Inyectores Zexel</span><span>Bielas de Motor</span><span>Overhaul Completo</span><span>Correas Mitsuboshi</span><span>Asientos de Válvulas</span><span>Bomba Alta Denso</span><span>Camisas Mahle</span><span>Surti Diesel Sánchez</span>
+    <span>Turbo Nissan QD32</span><span>Empaques de Culata</span><span>Pistones NKR</span><span>Bombas de Agua NPW</span><span>Fan Clutch NPR</span><span>Inyectores Zexel</span><span>Bielas de Motor</span><span>Overhaul Completo</span><span>Correas Mitsuboshi</span><span>Asientos de Válvulas</span><span>Bomba Alta Denso</span><span>Camisas Mahle</span><span>Surti Diesel Sánchez</span>
+  </div>
+</div>
+
+<!-- ═══ CATEGORÍAS ═══ -->
+<section class="categories" id="categorias">
+  <div class="section-label">Explora por categoría</div>
+  <h2 class="section-title">Todo lo que tu motor <span>necesita</span></h2>
+  <p class="section-sub">Haz clic en una categoría para filtrar el catálogo automáticamente.</p>
+  <div class="cat-grid">
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('turbo')"><span class="cat-icon">🌀</span><div class="cat-name">Turbocompresores</div><div class="cat-desc">Nissan QD32 y más marcas</div><div class="cat-arrow">↗</div></a>
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('empaques')"><span class="cat-icon">🔧</span><div class="cat-name">Empaques y Empaquetaduras</div><div class="cat-desc">Culata, escape, motor — múltiples aplicaciones</div><div class="cat-arrow">↗</div></a>
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('pistones')"><span class="cat-icon">⚙️</span><div class="cat-name">Pistones y Camisas</div><div class="cat-desc">Isuzu Original, Mahle — NKR, Dimax, 4JB1</div><div class="cat-arrow">↗</div></a>
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('bombas')"><span class="cat-icon">💧</span><div class="cat-name">Bombas</div><div class="cat-desc">Agua, aceite, vacío y alta presión</div><div class="cat-arrow">↗</div></a>
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('fanclutch')"><span class="cat-icon">🌬️</span><div class="cat-name">Fan Clutch</div><div class="cat-desc">NPW, Shimahide — NPR, NHR, Hino, Nissan</div><div class="cat-arrow">↗</div></a>
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('inyectores')"><span class="cat-icon">⚡</span><div class="cat-name">Inyectores y Selenoides</div><div class="cat-desc">Zexel, Isuzu — NPR, NKR, 4HK1</div><div class="cat-arrow">↗</div></a>
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('correas')"><span class="cat-icon">🔩</span><div class="cat-name">Correas</div><div class="cat-desc">Distribución, ventilador, hidráulico</div><div class="cat-arrow">↗</div></a>
+    <a href="#catalogo" class="cat-card fade-up" onclick="setFilter('overhaul')"><span class="cat-icon">📦</span><div class="cat-name">Overhaul Completo</div><div class="cat-desc">Kits NKR e ISF 3.8 — Isuzu y Cummins</div><div class="cat-arrow">↗</div></a>
+  </div>
+</section>
+
+<!-- ═══ CATÁLOGO ═══ -->
+<section class="catalog" id="catalogo">
+  <div class="section-label">Inventario disponible</div>
+  <h2 class="section-title">Nuestro <span>catálogo</span></h2>
+  <p class="section-sub">Organizado por motor para que encuentres todo fácil. Abre la sección que necesitas y cotiza directo por WhatsApp.</p>
+  <div class="catalog-controls">
+    <div class="catalog-search">
+      <input type="text" id="searchInput" placeholder="Buscar producto, marca o aplicación..." oninput="searchProducts()"/>
+      <button onclick="searchProducts()">🔍</button>
+    </div>
+    <span class="catalog-count" id="countLabel">147 productos</span>
+  </div>
+  <div id="motorGroups"></div>
+  <div class="catalog-empty" id="catalogEmpty">
+    <div style="font-size:3rem;opacity:.2">🔍</div>
+    <p>No se encontraron productos. Intenta con otro término.</p>
+  </div>
+</section>
+
+<!-- ═══ NOSOTROS ═══ -->
+<section class="why" id="nosotros">
+  <div class="why-layout">
+    <div class="why-img-area reveal-scale">
+      <div class="why-img-box">
+        <img src="imagenesal/WhatsApp Image 2026-05-23 at 2.00.30 PM (3).jpeg" alt="Overhaul NKR — Surti Diesel Sánchez" style="object-position:center"/>
+      </div>
+      <div class="why-badge"><span class="big">15+</span><span class="sm">Años en el mercado</span></div>
+    </div>
+    <div>
+      <div class="section-label">¿Por qué elegirnos?</div>
+      <h2 class="section-title">Tu motor en las <span>mejores manos</span></h2>
+      <p class="section-sub">Somos distribuidores con el stock más completo de repuestos diesel, respaldados por más de 15 años de experiencia en el sector.</p>
+      <div class="why-list">
+        <div class="why-item reveal-left"><div class="why-icon">✅</div><div><div class="why-item-title">Repuestos garantizados</div><div class="why-item-desc">Originales y alternativos de primera calidad con garantía de fábrica.</div></div></div>
+        <div class="why-item reveal-left"><div class="why-icon">🔍</div><div><div class="why-item-title">Asesoría técnica gratuita</div><div class="why-item-desc">Te ayudamos a identificar el repuesto exacto para tu motor.</div></div></div>
+        <div class="why-item reveal-left"><div class="why-icon">🚚</div><div><div class="why-item-title">Envíos a todo el país</div><div class="why-item-desc">Despacho rápido a todo Colombia con seguimiento en tiempo real.</div></div></div>
+        <div class="why-item reveal-left"><div class="why-icon">💰</div><div><div class="why-item-title">Precios de distribuidor</div><div class="why-item-desc">Descuentos especiales para talleres, flotas y clientes frecuentes.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARCAS ═══ -->
+<div class="brands">
+  <div class="brands-label">Marcas y motores que manejamos</div>
+  <div class="brands-row">
+    <div class="brand-pill fade-in">Isuzu</div><div class="brand-pill fade-in">Cummins</div><div class="brand-pill fade-in">Mitsubishi</div><div class="brand-pill fade-in">Toyota</div><div class="brand-pill fade-in">Nissan</div><div class="brand-pill fade-in">Hino</div><div class="brand-pill fade-in">Mahle</div><div class="brand-pill fade-in">Mitsuboshi</div><div class="brand-pill fade-in">NPW Japan</div><div class="brand-pill fade-in">Zexel</div><div class="brand-pill fade-in">Denso</div><div class="brand-pill fade-in">OOZX Japan</div>
+  </div>
+</div>
+
+<!-- ═══ SERVICIOS ═══ -->
+<section class="services" id="servicios">
+  <div class="section-label">Nuestros servicios</div>
+  <h2 class="section-title">Más que solo <span>repuestos</span></h2>
+  <p class="section-sub">Solución integral para el mantenimiento y reparación de motores diesel.</p>
+  <div class="services-grid">
+    <div class="service-card reveal-scale"><span class="service-num">01</span><span class="service-icon">🔬</span><div class="service-title">Diagnóstico Técnico</div><div class="service-desc">Identificamos el problema de tu motor y te recomendamos los repuestos exactos.</div><span class="service-tag">Consulta gratuita</span></div>
+    <div class="service-card reveal-scale"><span class="service-num">02</span><span class="service-icon">📦</span><div class="service-title">Pedidos por Importación</div><div class="service-desc">Si no tenemos en stock, gestionamos la importación directa del fabricante.</div><span class="service-tag">Importación directa</span></div>
+    <div class="service-card reveal-scale"><span class="service-num">03</span><span class="service-icon">🏭</span><div class="service-title">Overhaul Completo</div><div class="service-desc">Kits completos para NKR, Cummins ISF 3.8 y otras aplicaciones.</div><span class="service-tag">Kits disponibles</span></div>
+    <div class="service-card reveal-scale"><span class="service-num">04</span><span class="service-icon">📋</span><div class="service-title">Mantenimiento Preventivo</div><div class="service-desc">Planes de mantenimiento para flotas y maquinaria, reduciendo tiempos de parada.</div><span class="service-tag">Para flotas</span></div>
+    <div class="service-card reveal-scale"><span class="service-num">05</span><span class="service-icon">🚚</span><div class="service-title">Envíos a Todo el País</div><div class="service-desc">Despachos rápidos a toda Colombia con empaques seguros y trazabilidad.</div><span class="service-tag">Envío nacional</span></div>
+    <div class="service-card reveal-scale"><span class="service-num">06</span><span class="service-icon">💬</span><div class="service-title">Asesoría por WhatsApp</div><div class="service-desc">Atención inmediata por WhatsApp para consultas técnicas y cotizaciones urgentes.</div><span class="service-tag">Respuesta rápida</span></div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta-banner">
+  <div class="cta-text"><h2>¿Necesitas un repuesto urgente?</h2><p>Escríbenos ahora y te respondemos en menos de 30 minutos.</p></div>
+  <a href="https://wa.me/message/YB372RRAC2OFL1" class="btn-dark" target="_blank">Escribir por WhatsApp &rarr;</a>
+</div>
+
+<!-- ═══ CONTACTO ═══ -->
+<section class="contact-bar" id="contacto">
+  <div class="section-label">Contacto</div>
+  <h2 class="section-title" style="margin-bottom:48px">Estamos <span>aquí</span> para ayudarte</h2>
+  <div class="contact-grid">
+    <a href="https://wa.me/message/YB372RRAC2OFL1" target="_blank" class="contact-item contact-item-priority ci-whatsapp fade-up"><span class="ci-icon">💬</span><div class="ci-label">WhatsApp</div><div class="ci-val">310 810 3644</div><div class="ci-sub">Respuesta inmediata · Cotiza ahora</div></a>
+    <div class="contact-item contact-item-priority fade-up"><span class="ci-icon">📞</span><div class="ci-label">Teléfonos</div><div class="ci-val">310 810 3644</div><div class="ci-sub">313 867 9697 · 310 680 2335</div></div>
+    <div class="contact-item contact-item-priority fade-up"><span class="ci-icon">📍</span><div class="ci-label">Dirección</div><div class="ci-val">Calle 7 #15-27</div><div class="ci-sub">Bogotá, Barrio La Estanzuela</div></div>
+    <div class="contact-item fade-up" style="cursor:pointer" onclick="window.location='mailto:surtidieselsanchez@gmail.com'"><span class="ci-icon">✉️</span><div class="ci-label">Correo electrónico</div><div class="ci-val"><a href="mailto:surtidieselsanchez@gmail.com" style="color:inherit;text-decoration:none">surtidieselsanchez@gmail.com</a></div><div class="ci-sub">Respondemos en menos de 1 hora</div></div>
+    <div class="contact-item fade-up"><span class="ci-icon">🕐</span><div class="ci-label">Horario de atención</div><div class="ci-val">Lun – Sáb</div><div class="ci-sub">7:00 am – 6:00 pm</div></div>
+  </div>
+  <div class="contact-meta fade-up">
+    <h3>Encuéntranos en redes</h3>
+    <div class="meta-btns">
+      <a href="https://wa.me/message/YB372RRAC2OFL1" class="meta-btn mb-wa" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.facebook.com/share/1DCaYgugb8/" class="meta-btn mb-fb" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/surtidieselsanchezsas?igsh=MWtnMW4ycXpjY2Q4Ng%3D%3D&utm_source=qr" class="meta-btn mb-ig" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.tiktok.com/@surti.diesel.sanch?_r=1&_t=ZS-96xS9FkqZG6" class="meta-btn mb-tk" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.79 1.52V6.73a4.85 4.85 0 01-1.02-.04z"/></svg>
+        TikTok
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <img src="imagenesal/Logo.jpeg" alt="Logo"/>
+        <div><div class="t1">Surti Diesel Sánchez</div><div class="t2">Repuestos diesel · S.A.S</div></div>
+      </div>
+      <p>Tu distribuidor de confianza en repuestos para motores diesel. Calidad, experiencia y servicio en Bogotá y todo Colombia.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/message/YB372RRAC2OFL1" class="fsoc-btn fsoc-wa" target="_blank" title="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        <a href="https://www.facebook.com/share/1DCaYgugb8/" class="fsoc-btn fsoc-fb" target="_blank" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/surtidieselsanchezsas?igsh=MWtnMW4ycXpjY2Q4Ng%3D%3D&utm_source=qr" class="fsoc-btn fsoc-ig" target="_blank" title="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.tiktok.com/@surti.diesel.sanch?_r=1&_t=ZS-96xS9FkqZG6" class="fsoc-btn fsoc-tk" target="_blank" title="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.79 1.52V6.73a4.85 4.85 0 01-1.02-.04z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Catálogo</h4><ul><li><a href="#catalogo" onclick="setFilter('turbo')">Turbocompresores</a></li><li><a href="#catalogo" onclick="setFilter('empaques')">Empaques</a></li><li><a href="#catalogo" onclick="setFilter('pistones')">Pistones y Camisas</a></li><li><a href="#catalogo" onclick="setFilter('bombas')">Bombas</a></li><li><a href="#catalogo" onclick="setFilter('inyectores')">Inyectores</a></li><li><a href="#catalogo" onclick="setFilter('overhaul')">Overhaul</a></li></ul></div>
+    <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#servicios">Diagnóstico técnico</a></li><li><a href="#servicios">Importación</a></li><li><a href="#servicios">Kits Overhaul</a></li><li><a href="#servicios">Envíos nacionales</a></li><li><a href="#servicios">Asesoría WhatsApp</a></li></ul></div>
+    <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#nosotros">Sobre nosotros</a></li><li><a href="#categorias">Marcas</a></li><li><a href="#contacto">Contacto</a></li><li><a href="https://wa.me/message/YB372RRAC2OFL1" target="_blank">WhatsApp directo</a></li><li><a href="#contacto">Garantía</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 <span>Surti Diesel Sánchez S.A.S</span>. Todos los derechos reservados.</p>
+    <p>Calle 7 #15-27, Bogotá · <span>310 810 3644</span></p>
+  </div>
+</footer>
+
+<!-- ═══ MODAL COTIZACIÓN ═══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Solicitar Cotización</h3>
+    <p>Escríbenos directo por WhatsApp o completa el formulario y te respondemos a la brevedad.</p>
+    <a href="https://wa.me/message/YB372RRAC2OFL1" target="_blank" class="btn-primary" style="width:100%;justify-content:center;margin-bottom:18px;background:#25d366;text-decoration:none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Ir a WhatsApp ahora
+    </a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><div style="flex:1;height:1px;background:var(--border)"></div><span style="font-size:.7rem;color:var(--muted)">o llena el formulario</span><div style="flex:1;height:1px;background:var(--border)"></div></div>
+    <div class="modal-form" id="quoteForm">
+      <input type="text" id="qName" placeholder="Nombre completo *" required/>
+      <input type="tel" id="qPhone" placeholder="Teléfono / WhatsApp *" required/>
+      <input type="email" id="qEmail" placeholder="Correo electrónico"/>
+      <input type="text" id="qProduct" placeholder="Producto o referencia *" required/>
+      <select id="qCat"><option value="">Categoría del repuesto...</option><option>Turbocompresor</option><option>Empaque / Empaquetadura</option><option>Pistón / Camisa</option><option>Bomba de Agua</option><option>Bomba de Aceite</option><option>Fan Clutch</option><option>Inyector</option><option>Biela / Buje</option><option>Correa</option><option>Asiento de Válvula</option><option>Overhaul Completo</option><option>Otro</option></select>
+      <textarea id="qNotes" placeholder="Marca del motor, modelo, año, descripción adicional..."></textarea>
+      <button type="button" onclick="sendQuote()">Enviar solicitud →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIGHTBOX PRODUCTO ═══ -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <img id="lbImg" src="" alt=""/>
+    <div class="lb-info">
+      <div class="lb-cat" id="lbCat"></div>
+      <div class="lb-name" id="lbName"></div>
+      <div class="lb-brand" id="lbBrand"></div>
+      <div class="lb-app" id="lbApp"></div>
+      <button class="btn-primary" style="width:100%;margin-bottom:8px" onclick="directWAQuote(document.getElementById('lbName').textContent)">💬 Cotizar por WhatsApp →</button>
+      <button class="btn-outline" style="width:100%;font-size:.78rem;padding:10px" onclick="prefillQuote(document.getElementById('lbName').textContent);closeLightbox();openModal()">Formulario de cotización detallada</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══ PRODUCT DATA ═══ */
+const PRODUCTS = [
+  {name:"Turbo Nissan QD32",brand:"CTEC Turbo",cat:"turbo",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.27 PM.jpeg"},
+  {name:"Silicona RTV Roja 8848",brand:"Macgrey",cat:"sellantes",app:"Universal",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.28 PM.jpeg"},
+  {name:"Sintesolda Standard – Adhesivo Epóxico",brand:"Sinteco",cat:"sellantes",app:"Universal",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.28 PM (1).jpeg"},
+  {name:"Correa de Ventilador",brand:"Isuzu Original",cat:"correas",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.28 PM (2).jpeg"},
+  {name:"Correa Hidráulico",brand:"Mitsuboshi Japan",cat:"correas",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.28 PM (3).jpeg"},
+  {name:"Correa de Ventilador",brand:"Isuzu Original",cat:"correas",app:"NPR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.28 PM (4).jpeg"},
+  {name:"Correa de Distribución (Timing Belt)",brand:"Mitsuboshi Japan",cat:"correas",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.29 PM.jpeg"},
+  {name:"Biela de Motor",brand:"Isuzu Original",cat:"bielas",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.29 PM (1).jpeg"},
+  {name:"Empaque Múltiple de Escape",brand:"Isuzu Original",cat:"empaques",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.29 PM (2).jpeg"},
+  {name:"Empaque de Culata 1 Muesca",brand:"Isuzu Original",cat:"empaques",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.29 PM (3).jpeg"},
+  {name:"Empaque de Culata 2 Muescas",brand:"Isuzu Original",cat:"empaques",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.29 PM (4).jpeg"},
+  {name:"Empaque de Culata 3 Muescas",brand:"Isuzu Original",cat:"empaques",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.30 PM.jpeg"},
+  {name:"Pistón Original",brand:"Isuzu Original",cat:"pistones",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.30 PM (1).jpeg"},
+  {name:"Pistón Original",brand:"Mahle",cat:"pistones",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.30 PM (2).jpeg"},
+  {name:"Overhaul Completo NKR",brand:"Isuzu Original",cat:"overhaul",app:"NKR",badge:"kit",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.30 PM (3).jpeg"},
+  {name:"Overhaul Completo Cummins ISF 3.8",brand:"Cummins Original",cat:"overhaul",app:"Cummins ISF 3.8",badge:"kit",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.30 PM (4).jpeg"},
+  {name:"Bomba de Vacío",brand:"Alta Calidad",cat:"bombas",app:"Toyota 14B",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.31 PM.jpeg"},
+  {name:"Fan Clutch",brand:"CI-M",cat:"fanclutch",app:"Hino J05C",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.31 PM (1).jpeg"},
+  {name:"Bomba de Vacío Base Ancha",brand:"Alta Calidad",cat:"bombas",app:"Mitsubishi 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.31 PM (2).jpeg"},
+  {name:"Fan Clutch Nissan QD32",brand:"Original",cat:"fanclutch",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.31 PM (3).jpeg"},
+  {name:"Pistones Dimax 2.5 – RT 50",brand:"Mahle",cat:"pistones",app:"Dimax 2.5 / RT 50",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.32 PM.jpeg"},
+  {name:"Camisas NKR – 4JB1",brand:"Mahle",cat:"pistones",app:"NKR / 4JB1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.32 PM (1).jpeg"},
+  {name:"Empaque de Culata Toyota 14B",brand:"Original Japón",cat:"empaques",app:"Toyota 14B",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.32 PM (2).jpeg"},
+  {name:"Empaque de Culata Toyota 15B 1.3",brand:"Original Japón",cat:"empaques",app:"Toyota 15B 1.3",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.32 PM (3).jpeg"},
+  {name:"Empaque de Culata 4HG1 (2 Muescas)",brand:"Original Japón",cat:"empaques",app:"4HG1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.32 PM (4).jpeg"},
+  {name:"Empaque de Culata 4JA1 – 4JB1 (2 Muescas)",brand:"Original Japón",cat:"empaques",app:"4JA1 / 4JB1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.33 PM.jpeg"},
+  {name:"Bomba de Aceite Mitsubishi 4D34",brand:"BTK",cat:"bombas",app:"Mitsubishi 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.33 PM (1).jpeg"},
+  {name:"Biela de Motor Mitsubishi 4D34",brand:"SOWA",cat:"bielas",app:"Mitsubishi 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.33 PM (2).jpeg"},
+  {name:"Anillos de Motor Mitsubishi 4D34",brand:"TP",cat:"otros",app:"Mitsubishi 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.33 PM (3).jpeg"},
+  {name:"Bujes de Biela NKR Sin Turbo",brand:"Isuzu Original",cat:"bielas",app:"NKR Sin Turbo",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.33 PM (4).jpeg"},
+  {name:"Bujes de Biela NKR Con Turbo",brand:"Isuzu Original",cat:"bielas",app:"NKR Con Turbo",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.34 PM.jpeg"},
+  {name:"Bomba de Agua NPR Reward",brand:"NPW Japan",cat:"bombas",app:"NPR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.34 PM (1).jpeg"},
+  {name:"Bomba de Agua Mitsubishi Canter 4D34",brand:"NPW Japan",cat:"bombas",app:"Mitsubishi 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.34 PM (2).jpeg"},
+  {name:"Cuerpo de Aceleración NKR Reward",brand:"Alta Calidad",cat:"sensores",app:"NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.34 PM (3).jpeg"},
+  {name:"Buje Piñón Culata NPR 2000",brand:"Alta Calidad",cat:"bielas",app:"NPR 2000",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.35 PM.jpeg"},
+  {name:"Selenoide Bomba de Inyección",brand:"Zexel",cat:"inyectores",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.35 PM (1).jpeg"},
+  {name:"Tubo T Inyector",brand:"Isuzu Original",cat:"inyectores",app:"NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.35 PM (2).jpeg"},
+  {name:"Arandela Encauchetada",brand:"Isuzu Original",cat:"otros",app:"FTR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.35 PM (3).jpeg"},
+  {name:"Sensor MAP",brand:"Isuzu Original",cat:"sensores",app:"Dimax 2.5 / RT 50 / NKR Reward / NQR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.35 PM (4).jpeg"},
+  {name:"Caucho Inyector Pequeño",brand:"Isuzu Original",cat:"cauchos",app:"4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.36 PM.jpeg"},
+  {name:"Orring Filtro de Aceite",brand:"Isuzu Original",cat:"cauchos",app:"4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.36 PM (1).jpeg"},
+  {name:"Caucho Inyector Grande",brand:"Isuzu Original",cat:"cauchos",app:"4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.36 PM (2).jpeg"},
+  {name:"Bomba de Agua NPR Reward (4HK1)",brand:"NPW Japan",cat:"bombas",app:"NPR Reward 4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.36 PM (3).jpeg"},
+  {name:"Fan Clutch NPR Reward (4HK1)",brand:"NPW Japan",cat:"fanclutch",app:"NPR Reward 4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.36 PM (4).jpeg"},
+  {name:"Fan Clutch NPR Reward (4JB1) – NHR",brand:"NPW Japan",cat:"fanclutch",app:"NPR Reward 4JB1 / NHR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.37 PM.jpeg"},
+  {name:"Bomba de Agua 4JB1 / NHR / LUV 2.5 / Dimax 3000",brand:"NPW Japan",cat:"bombas",app:"4JB1 / NHR / LUV 2.5 / Dimax 3000",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.37 PM (1).jpeg"},
+  {name:"Asientos de Escape 4JB1",brand:"OOZX Fuji Japan",cat:"asientos",app:"4JB1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.37 PM (2).jpeg"},
+  {name:"Asientos de Admisión 4JB1",brand:"OOZX Fuji Japan",cat:"asientos",app:"4JB1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.37 PM (3).jpeg"},
+  {name:"Asientos de Escape 4BD1 – 4BD2",brand:"OOZX Fuji Japan",cat:"asientos",app:"4BD1 / 4BD2",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.38 PM.jpeg"},
+  {name:"Asientos de Admisión 4BD1 – 4BD2",brand:"OOZX Fuji Japan",cat:"asientos",app:"4BD1 / 4BD2",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.38 PM (1).jpeg"},
+  {name:"Inyectores NPR",brand:"Zexel",cat:"inyectores",app:"NPR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.38 PM (2).jpeg"},
+  {name:"Bomba de Alta Presión 4HK1",brand:"Denso",cat:"bombas",app:"4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.38 PM (3).jpeg"},
+  {name:"Inyectores 4HK1",brand:"Isuzu Original",cat:"inyectores",app:"4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.38 PM (4).jpeg"},
+  {name:"Diafragma Tapa Válvula",brand:"Isuzu Original",cat:"otros",app:"NKR / NHR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.39 PM.jpeg"},
+  {name:"Asientos de Escape NKR Reward",brand:"Isuzu Original",cat:"asientos",app:"NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.39 PM (1).jpeg"},
+  {name:"Asientos de Admisión NKR Reward",brand:"Isuzu Original",cat:"asientos",app:"NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.39 PM (2).jpeg"},
+  {name:"Tornillos de Culata NKR",brand:"Isuzu Original",cat:"otros",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.39 PM (3).jpeg"},
+  {name:"Empaquetadura de Motor NHR Euro 4 (2 Muescas)",brand:"Isuzu Original",cat:"empaques",app:"NHR Reward Euro 4",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.40 PM.jpeg"},
+  {name:"Empaquetadura de Motor LUV 2.5 (1 Muesca)",brand:"Isuzu Original",cat:"empaques",app:"LUV 2.5",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.40 PM (1).jpeg"},
+  {name:"Correa Ventilador FRR 4HK1",brand:"Isuzu Original",cat:"correas",app:"FRR 4HK1 Bus",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.40 PM (2).jpeg"},
+  {name:"Correa Ventilador FRR 4HK1",brand:"Isuzu Original",cat:"correas",app:"FRR 4HK1 Camión",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.40 PM (3).jpeg"},
+  {name:"Fan Clutch NPR Reward (4HK1)",brand:"Shimahide Japan",cat:"fanclutch",app:"NPR Reward 4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.41 PM.jpeg"},
+  {name:"Capuchón Inyector Hino J05",brand:"Hino Original",cat:"capuchones",app:"Hino J05",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.41 PM (1).jpeg"},
+  {name:"Capuchón Inyector Hino Dutro 300 – N04",brand:"Hino Original",cat:"capuchones",app:"Hino Dutro 300 / N04",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.41 PM (2).jpeg"},
+  {name:"Balibomba de Clutch Alta",brand:"YHB Professional",cat:"otros",app:"Mitsubishi 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.41 PM (3).jpeg"},
+  {name:"Bomba de Aceite Nissan Navara YD25",brand:"Alta Calidad",cat:"bombas",app:"Nissan Navara YD25",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.42 PM.jpeg"},
+  {name:"Bomba de Agua Hino Dutro 300 – N04",brand:"Alta Calidad",cat:"bombas",app:"Hino Dutro 300 / N04",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.42 PM (1).jpeg"},
+  // ── Nuevos productos junio 2026 ──
+  {name:"Retén Inyector Mazda BT50 2.5 Diesel",brand:"Alta Calidad",cat:"inyectores",app:"Mazda BT50 2.5",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.38 AM.jpeg"},
+  {name:"Pera Presión Aceite MT3000/QD32/TD-42/TD-27",brand:"GEN",cat:"sensores",app:"MT3000 / QD32 / TD-42 / TD-27",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.39 AM.jpeg"},
+  {name:"Camisas Mahle NKR 4JB1-T",brand:"Mahle",cat:"pistones",app:"NKR / 4JB1-T",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.39 AM (1).jpeg"},
+  {name:"Pistón NKR Original Mahle (4JB1)",brand:"Mahle",cat:"pistones",app:"NKR / 4JB1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.39 AM (2).jpeg"},
+  {name:"Pistones Dimax 2.5 – RT 50 Mahle",brand:"Mahle",cat:"pistones",app:"Dimax 2.5 / RT 50",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.39 AM (3).jpeg"},
+  {name:"Camisas NKR-4JB1 Mahle",brand:"Mahle",cat:"pistones",app:"NKR / 4JB1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.39 AM (4).jpeg"},
+  {name:"Empaquetadura Motor Mahle 4JB1-T",brand:"Mahle",cat:"empaques",app:"4JB1-T",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.39 AM (5).jpeg"},
+  {name:"Empaquetadura Motor Mahle 4HG1-T",brand:"Mahle",cat:"empaques",app:"4HG1-T",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.40 AM.jpeg"},
+  {name:"Kit de Motor NPR 3.5 Mahle",brand:"Mahle",cat:"overhaul",app:"NPR 3.5",badge:"kit",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.40 AM (2).jpeg"},
+  {name:"Retén Inyector 4HK1/4JJ1/RT-50 Isuzu",brand:"Isuzu Original",cat:"inyectores",app:"4HK1 / 4JJ1 / RT-50",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.40 AM (4).jpeg"},
+  {name:"Retén Tapa Válvulas NKR Reward Isuzu",brand:"Isuzu Original",cat:"cauchos",app:"NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.41 AM.jpeg"},
+  {name:"Asientos Escape MT3000/BD-30/TD27/TD42 Nissan",brand:"Alta Calidad",cat:"asientos",app:"MT3000 / BD-30 / TD27 / TD42",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.41 AM (1).jpeg"},
+  {name:"Asientos Admisión MT3000/BD-30/TD27/TD42 Nissan",brand:"Alta Calidad",cat:"asientos",app:"MT3000 / BD-30 / TD27 / TD42",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.41 AM (2).jpeg"},
+  {name:"Casquetes Biela NKR/4JB1-T/4JH1 Isuzu",brand:"Isuzu Original",cat:"bielas",app:"NKR / 4JB1-T / 4JH1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.41 AM (3).jpeg"},
+  {name:"Casquetes Biela Verde 4HK1/6HK1 Isuzu",brand:"Isuzu Original",cat:"bielas",app:"4HK1 / 6HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.41 AM (4).jpeg"},
+  {name:"Casquetes Biela Amarillo 4HK1/6HK1 Isuzu",brand:"Isuzu Original",cat:"bielas",app:"4HK1 / 6HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.41 AM (5).jpeg"},
+  {name:"Pera Presión Aceite 4HG1 Isuzu",brand:"Isuzu Original",cat:"sensores",app:"4HG1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.42 AM.jpeg"},
+  {name:"Camisilla Inyector 4HK1/6HK1 Vehicular Isuzu",brand:"Isuzu Original",cat:"inyectores",app:"4HK1 / 6HK1 Vehicular",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.42 AM (1).jpeg"},
+  {name:"Guías Válvulas 4HK1/6HK1 Isuzu",brand:"Isuzu Original",cat:"otros",app:"4HK1 / 6HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.42 AM (2).jpeg"},
+  {name:"Asientos Escape 4HK1/6HK1 Isuzu",brand:"Isuzu Original",cat:"asientos",app:"4HK1 / 6HK1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.42 AM (3).jpeg"},
+  {name:"Asientos Admisión 4HK1/6HK1 Isuzu",brand:"Isuzu Original",cat:"asientos",app:"4HK1 / 6HK1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.42 AM (4).jpeg"},
+  {name:"Termostato 4HK1-6HK1 Isuzu",brand:"Isuzu Original",cat:"otros",app:"4HK1 / 6HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.43 AM.jpeg"},
+  {name:"Camisilla Inyector 4HK1-6HK1 Maquinaria Isuzu",brand:"Isuzu Original",cat:"inyectores",app:"4HK1 / 6HK1 Maquinaria",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.43 AM (1).jpeg"},
+  {name:"Pera Temperatura NPR 2000 Isuzu",brand:"Isuzu Original",cat:"sensores",app:"NPR 2000",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.38.43 AM (2).jpeg"},
+  {name:"Kit de Clutch NQR BWB Embragues",brand:"BWB",cat:"otros",app:"NQR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 5.40.44 PM.jpeg"},
+  {name:"Turbo NHR Reward Original Isuzu",brand:"Isuzu Original",cat:"turbo",app:"NHR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.36 AM.jpeg"},
+  {name:"Tapa Radiador HD65-Canter 4D34 Hyundai-Kia",brand:"Alta Calidad",cat:"otros",app:"HD65 / Canter 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.37 AM.jpeg"},
+  {name:"Válvula Enfriador Aceite NKR Isuzu",brand:"Isuzu Original",cat:"otros",app:"NKR",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.37 AM (1).jpeg"},
+  {name:"Bomba de Aceite Dmax 3.0",brand:"Alta Calidad",cat:"bombas",app:"Dmax 3.0",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.37 AM (2).jpeg"},
+  {name:"Bomba de Agua N04-Hino Dutro 300 GMB",brand:"GMB",cat:"bombas",app:"Hino N04 / Dutro 300",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.37 AM (3).jpeg"},
+  {name:"Bomba de Aceite N04-Hino Dutro 300",brand:"Alta Calidad",cat:"bombas",app:"Hino N04 / Dutro 300",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.37 AM (4).jpeg"},
+  {name:"Anillos N04-Hino Dutro 300 Hino Original",brand:"Hino Original",cat:"pistones",app:"Hino N04 / Dutro 300",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.37 AM (5).jpeg"},
+  {name:"Medialunas-Casquetes N04-Hino Dutro 300 Taiho",brand:"Taiho",cat:"bielas",app:"Hino N04 / Dutro 300",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.38 AM.jpeg"},
+  {name:"Enfocador NPR 2000/4HG1-T Isuzu",brand:"Isuzu Original",cat:"otros",app:"NPR 2000 / 4HG1-T",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.38 AM (1).jpeg"},
+  {name:"Enfocador NPR-NQR Reward Isuzu",brand:"Isuzu Original",cat:"otros",app:"NPR / NQR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.38 AM (2).jpeg"},
+  {name:"Empaquetadura Motor Nissan BD30-MT 3000 Cabstar",brand:"Nissan Original",cat:"empaques",app:"Nissan BD30 / MT 3000 Cabstar",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.38 AM (3).jpeg"},
+  {name:"Empaquetadura Motor Nissan FD6-175",brand:"Nissan Original",cat:"empaques",app:"Nissan FD6-175",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.38 AM (4).jpeg"},
+  {name:"Bomba de Agua Nissan QD32 NPW",brand:"NPW Japan",cat:"bombas",app:"Nissan QD32",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.38 AM (5).jpeg"},
+  {name:"Bomba de Agua Mitsubishi Canter 4D34 NPW",brand:"NPW Japan",cat:"bombas",app:"Mitsubishi Canter 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.39 AM.jpeg"},
+  {name:"Empaquetadura Motor Nissan FD46-T",brand:"Nissan Original",cat:"empaques",app:"Nissan FD46-T",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.41 AM (4).jpeg"},
+  {name:"Empaquetadura Motor Nissan FE6",brand:"Nissan Original",cat:"empaques",app:"Nissan FE6",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.42 AM.jpeg"},
+  {name:"Empaquetadura Motor Nissan TD27",brand:"Nissan Original",cat:"empaques",app:"Nissan TD27",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.42 AM (1).jpeg"},
+  {name:"Empaquetadura Motor Nissan YD25 Frontier",brand:"Nissan Original",cat:"empaques",app:"Nissan YD25 Frontier",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.42 AM (2).jpeg"},
+  {name:"Guías de Válvulas NPR 2000 Isuzu",brand:"Isuzu Original",cat:"otros",app:"NPR 2000",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.42 AM (3).jpeg"},
+  {name:"Impulsadores Nissan 200",brand:"Alta Calidad",cat:"otros",app:"Nissan 200",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.43 AM.jpeg"},
+  {name:"Medialunas 4HG1-4HK1 Isuzu",brand:"Isuzu Original",cat:"bielas",app:"4HG1 / 4HK1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.43 AM (1).jpeg"},
+  {name:"Kit Repartición NKR Reward Isuzu",brand:"Isuzu Original",cat:"otros",app:"NKR Reward",badge:"kit",img:"imagenesal/WhatsApp Image 2026-06-05 at 8.40.43 AM (2).jpeg"},
+  {name:"Retén Trasero Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"cauchos",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.31 AM.jpeg"},
+  {name:"Retén Delantero Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"cauchos",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.31 AM (1).jpeg"},
+  {name:"Medialunas Cigüeñal Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"bielas",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.31 AM (2).jpeg"},
+  {name:"Anillos Motor Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"pistones",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.31 AM (3).jpeg"},
+  {name:"Bomba de Agua Toyota 1KZ Original NPW",brand:"NPW Japan",cat:"bombas",app:"Toyota 1KZ",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.31 AM (4).jpeg"},
+  {name:"Bomba de Agua Toyota 1KD Original NPW",brand:"NPW Japan",cat:"bombas",app:"Toyota 1KD",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.32 AM.jpeg"},
+  {name:"Válvulas de Admisión 4JB1 Mahle",brand:"Mahle",cat:"otros",app:"4JB1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.32 AM (1).jpeg"},
+  {name:"Válvulas de Escape 4JB1 Mahle",brand:"Mahle",cat:"otros",app:"4JB1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.32 AM (2).jpeg"},
+  {name:"Eje de Levas NKR-4JB1 Isuzu",brand:"Isuzu Original",cat:"otros",app:"NKR / 4JB1",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.32 AM (3).jpeg"},
+  {name:"Casquetes Eje de Levas Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"bielas",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.32 AM (4).jpeg"},
+  {name:"Fan Clutch Hyundai HD78 Electrónico Original",brand:"Hyundai Original",cat:"fanclutch",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.33 AM.jpeg"},
+  {name:"Pistones Hino N04-Hino Dutro 300",brand:"Hino Original",cat:"pistones",app:"Hino N04 / Dutro 300",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.33 AM (1).jpeg"},
+  {name:"Retenes Inyector Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"inyectores",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.33 AM (2).jpeg"},
+  {name:"Bomba de Aceite Toyota 1KZ Original",brand:"Toyota Original",cat:"bombas",app:"Toyota 1KZ",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.33 AM (3).jpeg"},
+  {name:"Retén Trasero NKR-NKR Reward Isuzu",brand:"Isuzu Original",cat:"cauchos",app:"NKR / NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.33 AM (4).jpeg"},
+  {name:"Tapa Repartición Delantera NKR Reward Isuzu",brand:"Isuzu Original",cat:"otros",app:"NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.33 AM (5).jpeg"},
+  {name:"Termostato Hino N04-Hino Dutro 300",brand:"Hino Original",cat:"otros",app:"Hino N04 / Dutro 300",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.34 AM.jpeg"},
+  {name:"Tornillos de Graduación NPR 2000 Isuzu",brand:"Isuzu Original",cat:"otros",app:"NPR 2000",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.34 AM (1).jpeg"},
+  {name:"Válvula Presión Bloque NPR 2000 Isuzu",brand:"Isuzu Original",cat:"otros",app:"NPR 2000",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.34 AM (2).jpeg"},
+  {name:"Culata NKR Reward Isuzu",brand:"Isuzu Original",cat:"otros",app:"NKR Reward",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.34 AM (3).jpeg"},
+  {name:"Piñón Loco Repartición de Buje NKR-4JB1 Isuzu",brand:"Isuzu Original",cat:"otros",app:"NKR / 4JB1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.34 AM (4).jpeg"},
+  {name:"Piñón Loco Repartición de Balinera NKR-4JB1 Isuzu",brand:"Isuzu Original",cat:"otros",app:"NKR / 4JB1",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.35 AM.jpeg"},
+  {name:"Bomba de Agua Nissan YD25 NPW",brand:"NPW Japan",cat:"bombas",app:"Nissan YD25",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.35 AM (1).jpeg"},
+  {name:"Bomba de Agua Nissan TD27 NPW",brand:"NPW Japan",cat:"bombas",app:"Nissan TD27",badge:"stock",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.35 AM (2).jpeg"},
+  {name:"Casquetes de Bancada Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"bielas",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.35 AM (3).jpeg"},
+  {name:"Casquetes de Biela Hyundai HD78 Electrónico",brand:"Hyundai Original",cat:"bielas",app:"Hyundai HD78 Electrónico",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-05 at 9.10.35 AM (4).jpeg"},
+  {name:"Empaque de Culata D-Max 3000 Euro 4 Original Isuzu",brand:"Isuzu Original",cat:"empaques",app:"D-Max 3000 Euro 4",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-06 at 10.49.29 AM.jpeg"},
+  {name:"Empaque de Culata NQR-FRR 2 Muescas Original Isuzu",brand:"Isuzu Original",cat:"empaques",app:"NQR / FRR",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-06 at 11.12.52 AM.jpeg"},
+  {name:"Bomba de Aceite Mazda BT50 Original AISIN",brand:"AISIN",cat:"bombas",app:"Mazda BT50",badge:"importado",img:"imagenesal/WhatsApp Image 2026-06-06 at 11.12.54 AM.jpeg"},
+  {name:"Silicona RTV Gris SI 5699",brand:"Loctite",cat:"sellantes",app:"Universal",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.28 PM.jpeg"},
+  {name:"Reinzosil Sellador Universal 300 SI",brand:"Victor Reinz",cat:"sellantes",app:"Universal",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.28 PM.jpeg"},
+  {name:"Anillos de Motor Mitsubishi 4D34",brand:"RIK",cat:"otros",app:"Mitsubishi 4D34",badge:"stock",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.33 PM (3).jpeg"},
+  {name:"Anillos de Motor Mitsubishi 4D34",brand:"Original Mitsubishi Fuso",cat:"otros",app:"Mitsubishi 4D34",badge:"importado",img:"imagenesal/WhatsApp Image 2026-05-23 at 2.00.33 PM (3).jpeg"}
+];
+
+const CAT_LABELS = {
+  turbo:"Turbocompresor",correas:"Correas",empaques:"Empaques",pistones:"Pistones/Camisas",
+  bombas:"Bombas",fanclutch:"Fan Clutch",inyectores:"Inyectores",bielas:"Bielas/Bujes",
+  asientos:"Asientos de Válvulas",overhaul:"Overhaul",cauchos:"Cauchos/O-rings",
+  sellantes:"Sellantes",sensores:"Sensores",capuchones:"Capuchones",otros:"Otros"
+};
+
+let currentFilter = 'todos';
+let currentSearch = '';
+
+function directWAQuote(productName) {
+  const msg = `Hola! Quiero cotizar: *${productName}*. Por favor indíquenme disponibilidad y precio. Gracias 🙏`;
+  window.open('https://wa.me/message/YB372RRAC2OFL1?text=' + encodeURIComponent(msg), '_blank');
+}
+
+/* ═══ GRUPOS POR MOTOR ═══ */
+const GROUPS = [
+  {id:'nkr', label:'Isuzu NKR', emoji:'🔵', accent:'#1976d2', desc:'NKR estándar', open:true},
+  {id:'nkr-reward', label:'Isuzu NKR Reward', emoji:'🔷', accent:'#1565c0', desc:'Generación NKR Reward', open:false},
+  {id:'nhr', label:'Isuzu NHR', emoji:'🟦', accent:'#0d47a1', desc:'Chasis NHR', open:false},
+  {id:'npr', label:'Isuzu NPR', emoji:'🟠', accent:'#f57c00', desc:'NPR estándar', open:false},
+  {id:'npr-reward', label:'Isuzu NPR Reward', emoji:'🟧', accent:'#ef6c00', desc:'Generación NPR Reward', open:false},
+  {id:'npr-2000', label:'Isuzu NPR 2000', emoji:'🔶', accent:'#e65100', desc:'Chasis NPR 2000', open:false},
+  {id:'npr-35', label:'Isuzu NPR 3.5', emoji:'🟠', accent:'#bf360c', desc:'Chasis NPR 3.5', open:false},
+  {id:'nqr', label:'Isuzu NQR', emoji:'🟡', accent:'#f9a825', desc:'Chasis NQR', open:false},
+  {id:'frr', label:'Isuzu FRR', emoji:'🟨', accent:'#fbc02d', desc:'Chasis FRR', open:false},
+  {id:'ftr', label:'Isuzu FTR', emoji:'⬜', accent:'#9e9e9e', desc:'Chasis FTR', open:false},
+  {id:'4jb1', label:'Isuzu 4JB1 / 4JA1 / LUV 2.5', emoji:'🟢', accent:'#388e3c', desc:'Motor 4JB1 · 4JA1 · LUV 2.5', open:false},
+  {id:'4hk1', label:'Isuzu 4HK1', emoji:'🟩', accent:'#2e7d32', desc:'Motor 4HK1', open:false},
+  {id:'6hk1', label:'Isuzu 6HK1', emoji:'🌿', accent:'#1b5e20', desc:'Motor 6HK1', open:false},
+  {id:'4bd', label:'Isuzu 4BD1 / 4BD2', emoji:'🔷', accent:'#7b1fa2', desc:'Motor 4BD1 · 4BD2', open:false},
+  {id:'4hg1', label:'Isuzu 4HG1', emoji:'🟪', accent:'#6a1b9a', desc:'Motor 4HG1', open:false},
+  {id:'dmax', label:'Isuzu D-Max / RT-50 / Dimax', emoji:'⚙️', accent:'#455a64', desc:'D-Max · RT-50 · Dimax', open:false},
+  {id:'toyota14b', label:'Toyota 14B', emoji:'🟡', accent:'#c62828', desc:'Motor Toyota 14B', open:false},
+  {id:'toyota15b', label:'Toyota 15B', emoji:'🟡', accent:'#d84315', desc:'Motor Toyota 15B 1.3', open:false},
+  {id:'toyota1kz', label:'Toyota 1KZ', emoji:'🟡', accent:'#ad1457', desc:'Motor Toyota 1KZ', open:false},
+  {id:'toyota1kd', label:'Toyota 1KD', emoji:'🟡', accent:'#6d4c41', desc:'Motor Toyota 1KD', open:false},
+  {id:'mit4d34', label:'Mitsubishi 4D34 / Canter', emoji:'⚙️', accent:'#546e7a', desc:'Mitsubishi Canter · 4D34', open:false},
+  {id:'hinoJ05', label:'Hino J05', emoji:'🔴', accent:'#d32f2f', desc:'Motor Hino J05', open:false},
+  {id:'hinoN04', label:'Hino N04 / Dutro 300', emoji:'🔴', accent:'#b71c1c', desc:'Hino Dutro 300 · N04', open:false},
+  {id:'hyundaiHD78', label:'Hyundai HD78 Electrónico', emoji:'🔷', accent:'#00838f', desc:'Chasis HD78 Electrónico', open:false},
+  {id:'hd65', label:'Hyundai-Kia HD65', emoji:'🔷', accent:'#00695c', desc:'Chasis HD65', open:false},
+  {id:'mazdaBT50', label:'Mazda BT50', emoji:'🟣', accent:'#6a1b9a', desc:'Mazda BT50', open:false},
+  {id:'cummins', label:'Cummins ISF 3.8', emoji:'⚫', accent:'#37474f', desc:'Motor Cummins ISF 3.8', open:false},
+  {id:'nissanQD32', label:'Nissan QD32 / MT3000 / TD', emoji:'🟢', accent:'#558b2f', desc:'QD32 · MT3000 · TD27 · TD42', open:false},
+  {id:'nissanYD25', label:'Nissan YD25 / Navara / Frontier', emoji:'🟢', accent:'#33691e', desc:'YD25 · Navara · Frontier', open:false},
+  {id:'nissanBD30', label:'Nissan BD30 / Cabstar', emoji:'🟢', accent:'#2e7d32', desc:'BD30 · MT 3000 Cabstar', open:false},
+  {id:'nissanFD', label:'Nissan FD6 / FD46 / FE6 / 200', emoji:'🟢', accent:'#1b5e20', desc:'FD6-175 · FD46-T · FE6 · Nissan 200', open:false},
+  {id:'universal', label:'Universal / Varios', emoji:'🔩', accent:'#607d8b', desc:'Sellantes y productos multimarca', open:false},
+];
+
+const GROUP_PRODUCTS = {
+  'nkr': [0,3,4,6,7,8,9,10,11,12,13,14,19,21,29,30,35,53,56,69,70,72,80,94,122,134,135],
+  'nkr-reward': [33,36,38,54,55,77,113,128,129,133],
+  'nhr': [44,45,53,57,92],
+  'npr': [5,50],
+  'npr-reward': [31,42,43,44,61],
+  'npr-2000': [34,90,100,110,131,132],
+  'npr-35': [75],
+  'nqr': [38,91,101,141],
+  'frr': [59,60,141],
+  'ftr': [37],
+  '4jb1': [21,25,44,45,46,47,58,69,70,72,73,80,120,121,122,134,135],
+  '4hk1': [39,40,41,42,43,51,52,59,60,61,76,81,82,84,85,86,87,88,89,112],
+  '6hk1': [81,82,84,85,86,87,88,89],
+  '4bd': [48,49],
+  '4hg1': [24,74,83,100,112],
+  'dmax': [20,38,45,71,76,95,140],
+  'toyota14b': [16,22],
+  'toyota15b': [23],
+  'toyota1kz': [118,127],
+  'toyota1kd': [119],
+  'mit4d34': [18,26,27,28,32,64,93,105,145,146],
+  'hinoJ05': [17,62],
+  'hinoN04': [63,66,96,97,98,99,125,130],
+  'hyundaiHD78': [114,115,116,117,123,124,126,138,139],
+  'hd65': [93],
+  'mazdaBT50': [67,142],
+  'cummins': [15],
+  'nissanQD32': [68,78,79,104,108,137],
+  'nissanYD25': [65,109,136],
+  'nissanBD30': [102],
+  'nissanFD': [103,106,107,111],
+  'universal': [1,2,143,144],
+};
+
+function renderProductCard(p) {
+  const badgeCls = p.badge==='stock'?'badge-stock':p.badge==='kit'?'badge-kit':'badge-importado';
+  const badgeText = p.badge==='stock'?'Stock':p.badge==='kit'?'Kit':'Importado';
+  const nameSafe = p.name.replace(/'/g,"\\'");
+  return `<div class="prod-sm fade-up">
+    <div class="psm-img" onclick="openLightbox(${p.idx})">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.opacity='.3'"/>
+      <span class="psm-badge ${badgeCls}">${badgeText}</span>
+      <div class="psm-overlay"><span class="psm-zoom">Ver detalle</span></div>
+    </div>
+    <div class="psm-info">
+      <div class="psm-cat">${CAT_LABELS[p.cat]||p.cat}</div>
+      <div class="psm-name">${p.name}</div>
+      <div class="psm-brand">${p.brand}</div>
+      <div class="psm-app">🔧 ${p.app}</div>
+      <button class="psm-btn" onclick="directWAQuote('${nameSafe}')">💬 Cotizar</button>
+    </div>
+  </div>`;
+}
+
+function renderCatalog() {
+  const container = document.getElementById('motorGroups');
+  const q = currentSearch.toLowerCase();
+  const visibleIdx = new Set();
+
+  container.innerHTML = GROUPS.map((g, gi) => {
+    const indices = GROUP_PRODUCTS[g.id] || [];
+    const allProds = indices.map(i => ({...PRODUCTS[i], idx:i}));
+    const filtered = q
+      ? allProds.filter(p =>
+          p.name.toLowerCase().includes(q) ||
+          p.brand.toLowerCase().includes(q) ||
+          p.app.toLowerCase().includes(q) ||
+          p.cat.toLowerCase().includes(q))
+      : allProds;
+
+    const count = filtered.length;
+    if(q && count === 0) return '';
+    filtered.forEach(p => visibleIdx.add(p.idx));
+
+    const isOpen = g.open || (q && count > 0);
+    const prods = q ? filtered : allProds;
+
+    return `<div class="motor-group" style="--g-accent:${g.accent}">
+      <div class="mg-header${isOpen?' open':''}" onclick="toggleGroup(this)">
+        <div class="mg-accent"></div>
+        <div class="mg-left">
+          <span class="mg-emoji">${g.emoji}</span>
+          <div>
+            <div class="mg-label">${g.label}</div>
+            <div class="mg-desc">${g.desc}</div>
+          </div>
+        </div>
+        <div class="mg-right">
+          <span class="mg-count${count===0?' zero':''}">${count} producto${count!==1?'s':''}</span>
+          <span class="mg-arrow">${isOpen?'▲':'▼'}</span>
+        </div>
+      </div>
+      <div class="mg-body${isOpen?' open':''}">
+        <div class="mg-grid">${prods.map(p => renderProductCard(p)).join('')}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const totalVisible = visibleIdx.size;
+  document.getElementById('countLabel').textContent = `${totalVisible} producto${totalVisible!==1?'s':''}`;
+  document.getElementById('catalogEmpty').classList.toggle('show', totalVisible === 0);
+  document.querySelectorAll('#motorGroups .fade-up, #motorGroups .fade-in, #motorGroups .reveal-left, #motorGroups .reveal-right, #motorGroups .reveal-scale').forEach(el => observer.observe(el));
+}
+
+function toggleGroup(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.mg-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+  arrow.textContent = !isOpen ? '▲' : '▼';
+}
+
+function setFilter(cat) {
+  const input = document.getElementById('searchInput');
+  if(input) input.value = cat === 'todos' ? '' : cat;
+  currentSearch = cat === 'todos' ? '' : cat;
+  renderCatalog();
+  setTimeout(() => document.getElementById('catalogo').scrollIntoView({behavior:'smooth'}), 80);
+}
+
+function searchProducts() {
+  currentSearch = document.getElementById('searchInput').value;
+  renderCatalog();
+}
+
+function prefillQuote(name) {
+  const el = document.getElementById('qProduct');
+  if(el) el.value = name;
+}
+
+/* ── LIGHTBOX ── */
+function openLightbox(i) {
+  const p = PRODUCTS[i];
+  document.getElementById('lbImg').src = p.img;
+  document.getElementById('lbName').textContent = p.name;
+  document.getElementById('lbBrand').textContent = p.brand;
+  document.getElementById('lbApp').textContent = '🔧 Aplicación: '+p.app;
+  document.getElementById('lbCat').textContent = CAT_LABELS[p.cat]||p.cat;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+  prefillQuote(p.name);
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ── MODAL ── */
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function sendQuote() {
+  const name=document.getElementById('qName').value;
+  const phone=document.getElementById('qPhone').value;
+  const product=document.getElementById('qProduct').value;
+  if(!name||!phone||!product){alert('Por favor completa los campos requeridos (*)');return;}
+  const notes=document.getElementById('qNotes').value;
+  const cat=document.getElementById('qCat').value;
+  const msg=`Hola, soy ${name}. Quiero cotizar: *${product}*${cat?' ('+cat+')':''}. Tel: ${phone}.${notes?' Nota: '+notes:''}`;
+  window.open('https://wa.me/message/YB372RRAC2OFL1?text='+encodeURIComponent(msg),'_blank');
+  closeModal();
+}
+
+/* ── INTERSECTION OBSERVER ── */
+const observer = new IntersectionObserver(entries => entries.forEach(e => {
+  if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.fade-up, .fade-in, .reveal-left, .reveal-right, .reveal-scale').forEach(el=>observer.observe(el));
+
+/* ── ESC KEY ── */
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLightbox();}});
+
+/* ── BACK TO TOP + NAVBAR SCROLL STATE ── */
+const navEl = document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  document.getElementById('backTop').classList.toggle('show',window.scrollY>400);
+  navEl.classList.toggle('scrolled',window.scrollY>40);
+});
+
+/* ── COUNTER ANIMATION ── */
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = +el.getAttribute('data-target');
+    const suffix = el.closest('.stat-item').querySelector('.stat-label').textContent.includes('catálogo') ? '+' : '+';
+    let current = 0;
+    const step = Math.ceil(target/40);
+    const timer = setInterval(()=>{
+      current = Math.min(current+step, target);
+      el.textContent = current + suffix;
+      if(current >= target) clearInterval(timer);
+    },40);
+  });
+}
+
+const heroObserver = new IntersectionObserver(entries => {
+  if(entries[0].isIntersecting){animateCounters();heroObserver.disconnect();}
+},{threshold:.3});
+const statsEl = document.querySelector('.hero-stats');
+if(statsEl) heroObserver.observe(statsEl);
+
+/* ── INIT ── */
+renderCatalog();
+</script>
+</body>
+</html>
