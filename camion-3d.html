@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Camión Diesel 3D — Surti Diesel Sánchez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet"/>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
+    "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
+  }
+}
+</script>
+<style>
+  html,body{margin:0;height:100%;background:#0c0c14;overflow:hidden;font-family:'Manrope',system-ui,sans-serif}
+  three-d-stage:not(:defined){visibility:hidden}
+  three-d-stage{display:block;width:100vw;height:100vh}
+  #ui{position:fixed;inset:0;pointer-events:none;z-index:5}
+  .bar{position:absolute;left:14px;top:14px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:auto;max-width:calc(100% - 28px)}
+  .btn{font-family:'Sora',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.4px;color:#c9ced6;background:rgba(17,17,25,.88);border:1px solid #23232f;border-radius:20px;padding:8px 14px;cursor:pointer;backdrop-filter:blur(8px);transition:color .2s,border-color .2s,background .2s}
+  .btn:hover{color:#fff;border-color:rgba(212,0,0,.6)}
+  .btn.on{color:#fff;background:linear-gradient(160deg,#c00000,#900000);border-color:#d40000}
+  .hint{position:absolute;left:14px;bottom:16px;pointer-events:none;font-size:.68rem;color:#62627a;letter-spacing:.3px}
+  .pin{position:absolute;transform:translate(-50%,-140%);pointer-events:auto;cursor:pointer;display:flex;align-items:center;gap:7px;padding:6px 12px 6px 8px;border-radius:20px;background:rgba(12,12,20,.92);border:1px solid rgba(212,0,0,.45);color:#fff;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:700;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.5);transition:opacity .25s,transform .2s,border-color .2s}
+  .pin:hover{border-color:#ff4444;filter:brightness(1.15)}
+  .pin .dot{width:8px;height:8px;border-radius:50%;background:#ff2222;box-shadow:0 0 0 4px rgba(212,0,0,.22)}
+  .pin.hidden{opacity:0;pointer-events:none}
+  .toast{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(12,12,20,.94);border:1px solid #23232f;border-left:3px solid #d40000;color:#f0f0f8;font-size:.74rem;padding:10px 16px;border-radius:4px;opacity:0;transition:opacity .3s}
+  .toast.show{opacity:1}
+  /* lista de piezas del motor */
+  .parts{position:absolute;right:14px;top:14px;width:224px;max-height:calc(100% - 92px);display:flex;flex-direction:column;pointer-events:auto;background:rgba(12,12,20,.9);border:1px solid #23232f;border-radius:10px;backdrop-filter:blur(10px);overflow:hidden}
+  .parts h4{flex:none;margin:0;padding:11px 13px 9px;font-family:'Sora',sans-serif;font-size:.63rem;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:#f0f0f8;border-bottom:1px solid #1e1e28;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;cursor:pointer;user-select:none}
+  .parts h4 b{font-weight:800}
+  .parts h4 em{flex:none;font-style:normal;font-size:.7rem;color:#8d8da6;transition:transform .2s}
+  .parts.min h4{border-bottom:0}
+  .parts.min h4 em{transform:rotate(-90deg)}
+  .parts.min .plist{display:none}
+  .parts.min h4 span{display:none}
+  @media (max-width:760px){
+    .parts{width:auto;right:10px;top:10px;max-width:calc(100% - 20px);max-height:calc(100% - 130px)}
+    .parts h4{padding:9px 11px;font-size:.58rem}
+    .bar{left:10px;top:10px;gap:5px;max-width:calc(100% - 130px)}
+    .btn{font-size:.58rem;padding:6px 10px;border-radius:14px}
+    .hint{display:none}
+  }
+  .parts h4 span{display:block;margin-top:3px;font-size:.6rem;font-weight:600;letter-spacing:.2px;text-transform:none;color:#6a6a82}
+  .prow{display:flex;align-items:center;gap:9px;width:100%;padding:8px 13px;border:0;border-bottom:1px solid #16161f;background:transparent;color:#b9bdc8;font-family:'Manrope',sans-serif;font-size:.7rem;font-weight:600;text-align:left;cursor:pointer;transition:background .15s,color .15s}
+  .prow:last-child{border-bottom:0}
+  .plist{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#33333f transparent}
+  .plist::-webkit-scrollbar{width:6px}
+  .plist::-webkit-scrollbar-thumb{background:#33333f;border-radius:3px}
+  .prow i{width:6px;height:6px;border-radius:50%;background:#3d3d4c;flex:none;transition:background .15s,box-shadow .15s}
+  .prow small{display:block;font-size:.58rem;font-weight:600;letter-spacing:.3px;color:#5e5e74;text-transform:uppercase}
+  .prow:hover,.prow.on{background:rgba(212,0,0,.14);color:#fff}
+  .prow:hover i,.prow.on i{background:#ff2b2b;box-shadow:0 0 0 3px rgba(212,0,0,.22)}
+  .tip{position:absolute;pointer-events:none;transform:translate(10px,-50%);background:rgba(12,12,20,.95);border:1px solid rgba(212,0,0,.5);color:#fff;font-family:'Sora',sans-serif;font-size:.67rem;font-weight:700;padding:6px 10px;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity .15s}
+  .tip small{display:block;font-family:'Manrope',sans-serif;font-size:.58rem;font-weight:600;color:#ff8a8a;letter-spacing:.3px;margin-top:2px}
+  .tip.show{opacity:1}
+</style>
+</head>
+<body>
+<three-d-stage name="camion-diesel" background="#0c0c14"></three-d-stage>
+<div id="ui">
+  <div class="bar">
+    <button class="btn" data-view="tres">Vista 3/4</button>
+    <button class="btn" data-view="frente">Frente</button>
+    <button class="btn" data-view="lado">Lateral</button>
+    <button class="btn" data-view="atras">Trasera</button>
+    <button class="btn" id="btnCab">Levantar cabina</button>
+    <button class="btn" id="btnSpin">Girar</button>
+  </div>
+  <div class="hint">Arrastra para girar · rueda para acercar · toca una pieza del motor para ver sus repuestos</div>
+  <div class="parts" id="parts">
+    <h4 id="partsToggle"><b>Piezas del motor<span>Toca una pieza en el 3D o en la lista</span></b><em id="partsCaret">▾</em></h4>
+    <div class="plist" id="plist"></div>
+  </div>
+  <div class="tip" id="tip"></div>
+  <div class="toast" id="toast"></div>
+</div>
+<script src="./three-d-stage.js"></script>
+<script type="module">
+const stage = document.querySelector('three-d-stage');
+const { THREE } = await stage.ready;
+if (stage.shadowRoot) {
+  let tries = 0;
+  const kill = () => {
+    const tb = stage.shadowRoot.querySelector('.toolbar');
+    const nt = stage.shadowRoot.querySelector('.note');
+    if (tb) tb.remove();
+    if (nt) nt.remove();
+    if (!tb && ++tries < 20) setTimeout(kill, 150);
+  };
+  kill();
+}
+{
+  const panel = document.getElementById('parts');
+  const toggle = document.getElementById('partsToggle');
+  if (window.matchMedia('(max-width:760px)').matches) panel.classList.add('min');
+  toggle.addEventListener('click', () => panel.classList.toggle('min'));
+}
+const renderer = stage._renderer, scene = stage._scene, camera = stage._camera, controls = stage._controls;
+
+/* ───────── render: tonemapping + estudio reflejado ───────── */
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+function studioEnv(){
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 512;
+  const g = c.getContext('2d');
+  const grd = g.createLinearGradient(0,0,0,512);
+  grd.addColorStop(0.00,'#f4f7fb');
+  grd.addColorStop(0.42,'#c2cdd9');
+  grd.addColorStop(0.49,'#8b939c');
+  grd.addColorStop(0.51,'#36393f');
+  grd.addColorStop(1.00,'#101216');
+  g.fillStyle = grd; g.fillRect(0,0,1024,512);
+  const soft = (x,y,w,h,a)=>{
+    const rg = g.createRadialGradient(x,y,0,x,y,Math.max(w,h)/2);
+    rg.addColorStop(0,'rgba(255,255,255,'+a+')'); rg.addColorStop(1,'rgba(255,255,255,0)');
+    g.fillStyle = rg; g.fillRect(x-w/2,y-h/2,w,h);
+  };
+  soft(250,110,430,270,0.95); soft(770,140,380,230,0.65); soft(512,40,980,150,0.5);
+  soft(60,300,260,160,0.25); soft(930,320,240,150,0.2);
+  const tex = new THREE.Texture(c);
+  tex.mapping = THREE.EquirectangularReflectionMapping;
+  tex.colorSpace = THREE.SRGBColorSpace; tex.needsUpdate = true;
+  const pm = new THREE.PMREMGenerator(renderer); pm.compileEquirectangularShader();
+  const env = pm.fromEquirectangular(tex).texture;
+  pm.dispose(); tex.dispose();
+  return env;
+}
+scene.environment = studioEnv();
+if ('environmentIntensity' in scene) scene.environmentIntensity = 1.15;
+renderer.toneMappingExposure = 1.12;
+/* las luces del visor quedan como relleno suave: el entorno hace el trabajo */
+scene.traverse(o=>{
+  if (o.isHemisphereLight) o.intensity = 0.30;
+  else if (o.isDirectionalLight) o.intensity = o.castShadow ? 1.45 : 0.25;
+  else if (o.isMesh && o.material && o.material.isShadowMaterial) o.material.opacity = 0.42;
+});
+/* piso mate para que el camión no flote */
+const floor = new THREE.Mesh(
+  new THREE.CircleGeometry(40, 72),
+  new THREE.MeshStandardMaterial({ name:'piso', color:0x15161c, roughness:0.85, metalness:0.0 })
+);
+floor.rotation.x = -Math.PI/2; floor.position.y = -0.002; floor.receiveShadow = true;
+scene.add(floor);
+
+/* ───────── materiales ───────── */
+const phys = (name,o) => new THREE.MeshPhysicalMaterial(Object.assign({ name }, o));
+const std  = (name,o) => new THREE.MeshStandardMaterial(Object.assign({ name }, o));
+const M = {
+  cab:     phys('pintura_cabina', { color:0xf3f4f3, roughness:0.22, metalness:0.0, clearcoat:1.0, clearcoatRoughness:0.06 }),
+  box:     phys('furgon_blanco',  { color:0xeff0ee, roughness:0.42, metalness:0.0, clearcoat:0.35, clearcoatRoughness:0.3 }),
+  boxSide: phys('lamina_furgon',  { color:0xe9eae8, roughness:0.5,  metalness:0.02, clearcoat:0.2, clearcoatRoughness:0.4 }),
+  glass:   phys('vidrio',         { color:0x0b1219, roughness:0.035, metalness:0.0, clearcoat:1.0, clearcoatRoughness:0.02, reflectivity:0.9 }),
+  chrome:  std('cromo',           { color:0xe2e7ec, roughness:0.13, metalness:1.0 }),
+  steel:   std('acero',           { color:0xb9c0c8, roughness:0.34, metalness:0.9 }),
+  alum:    std('aluminio',        { color:0xa9b0b8, roughness:0.42, metalness:0.75 }),
+  rim:     std('rin',             { color:0xb7bcc1, roughness:0.45, metalness:0.5 }),
+  tire:    std('caucho',          { color:0x101014, roughness:0.95, metalness:0.0 }),
+  tread:   std('banda_rodamiento',{ color:0x0b0b0e, roughness:0.98, metalness:0.0 }),
+  dark:    std('plastico_negro',  { color:0x1a1a20, roughness:0.62, metalness:0.05 }),
+  rubber:  std('empaque',         { color:0x0f0f13, roughness:0.85, metalness:0.0 }),
+  engine:  std('bloque_motor',    { color:0x6b7380, roughness:0.48, metalness:0.55 }),
+  castIron:std('fundicion',       { color:0x4d5158, roughness:0.62, metalness:0.5 }),
+  brass:   std('bronce',          { color:0xb08d4a, roughness:0.3,  metalness:0.8 }),
+  lamp:    phys('faro',           { color:0xcdd9e4, roughness:0.05, metalness:0.0, clearcoat:1, clearcoatRoughness:0.02 }),
+  amber:   phys('direccional',    { color:0xd98b12, roughness:0.1,  metalness:0.0, clearcoat:1 }),
+  red:     phys('reflectivo',     { color:0xb51616, roughness:0.2,  metalness:0.0, clearcoat:1 }),
+  gasket:  std('empaque',         { color:0x8d2f22, roughness:0.72, metalness:0.05 }),
+  hot:     std('punto',           { color:0xff2222, roughness:0.3,  emissive:0x8a0000 }),
+};
+
+/* ───────── helpers ───────── */
+const box = (x,y,z) => new THREE.BoxGeometry(x,y,z);
+const cyl = (r,h,s=28) => new THREE.CylinderGeometry(r,r,h,s);
+function roundedBox(w,h,d,r){
+  const s = new THREE.Shape(); const x=-w/2, y=-h/2;
+  s.moveTo(x+r,y);
+  s.lineTo(x+w-r,y); s.absarc(x+w-r,y+r,r,-Math.PI/2,0);
+  s.lineTo(x+w,y+h-r); s.absarc(x+w-r,y+h-r,r,0,Math.PI/2);
+  s.lineTo(x+r,y+h); s.absarc(x+r,y+h-r,r,Math.PI/2,Math.PI);
+  s.lineTo(x,y+r); s.absarc(x+r,y+r,r,Math.PI,Math.PI*1.5);
+  const g = new THREE.ExtrudeGeometry(s,{depth:d,bevelEnabled:true,bevelSize:0.018,bevelThickness:0.018,bevelSegments:3,curveSegments:10});
+  g.translate(0,0,-d/2); return g;
+}
+/* silueta lateral (x adelante, y arriba) extruida a lo ancho */
+function profile(pts, depth, bevel=0.055){
+  const s = new THREE.Shape();
+  s.moveTo(pts[0][0],pts[0][1]);
+  for (let i=1;i<pts.length;i++) s.lineTo(pts[i][0],pts[i][1]);
+  s.closePath();
+  const g = new THREE.ExtrudeGeometry(s,{depth,bevelEnabled:true,bevelSize:bevel,bevelThickness:bevel,bevelSegments:4,curveSegments:10});
+  g.translate(0,0,-depth/2); return g;
+}
+const truck = new THREE.Group(); truck.name = 'camion_diesel';
+function part(parent,name,geo,mat,pos,rot,scale){
+  const m = new THREE.Mesh(geo,mat); m.name = name;
+  if (pos) m.position.set(pos[0],pos[1],pos[2]);
+  if (rot) m.rotation.set(rot[0],rot[1],rot[2]);
+  if (scale) m.scale.set(scale[0],scale[1],scale[2]);
+  m.castShadow = true; m.receiveShadow = true;
+  parent.add(m); return m;
+}
+
+/* ═════════ chasis ═════════ */
+const AX_F = 2.00, AX_R = -1.46;
+const chassis = new THREE.Group(); chassis.name='chasis'; truck.add(chassis);
+[0.44,-0.44].forEach((z,i)=>{
+  part(chassis,'riel_'+(i?'der':'izq'), box(5.6,0.21,0.09), M.dark, [0.28,0.76,z]);
+  part(chassis,'riel_ala_sup_'+(i?'der':'izq'), box(5.6,0.05,0.16), M.dark, [0.28,0.865,z+(i?-0.03:0.03)]);
+  part(chassis,'riel_ala_inf_'+(i?'der':'izq'), box(5.6,0.05,0.16), M.dark, [0.28,0.655,z+(i?-0.03:0.03)]);
+});
+[2.55,1.6,0.6,-0.5,-1.9,-2.4].forEach((x,i)=>part(chassis,'travesano_'+(i+1), box(0.09,0.15,0.86), M.dark, [x,0.76,0]));
+part(chassis,'tanque_combustible', cyl(0.25,1.05,28), M.alum, [0.7,0.64,-0.72], [0,0,Math.PI/2]);
+part(chassis,'tanque_tapa', cyl(0.06,0.06,16), M.dark, [0.9,0.87,-0.72]);
+[0.98,0.42].forEach((x,i)=>part(chassis,'correa_tanque_'+(i+1), box(0.045,0.54,0.54), M.dark, [x,0.62,-0.72]));
+part(chassis,'caja_bateria', roundedBox(0.52,0.3,0.38,0.02), M.dark, [0.75,0.66,0.7]);
+part(chassis,'silenciador', cyl(0.13,0.8,24), M.steel, [-0.15,0.6,0.58], [0,0,Math.PI/2]);
+part(chassis,'tubo_escape_1', cyl(0.05,1.2,14), M.steel, [-1.15,0.6,0.58], [0,0,Math.PI/2]);
+part(chassis,'tubo_escape_2', cyl(0.05,0.9,14), M.steel, [0.7,0.62,0.58], [0,0,Math.PI/2]);
+part(chassis,'cardan', cyl(0.05,1.9,14), M.steel, [0.35,0.52,0], [0,0,Math.PI/2]);
+part(chassis,'caja_cambios', roundedBox(0.66,0.36,0.38,0.04), M.castIron, [1.42,0.56,0]);
+[[AX_F,'del',1.1],[AX_R,'tras',1.25]].forEach(([x,tag,len])=>{
+  [0.44,-0.44].forEach((z,i)=>{
+    part(chassis,'ballesta_'+tag+'_'+(i+1), box(len,0.055,0.13), M.steel, [x,0.6,z]);
+    part(chassis,'ballesta2_'+tag+'_'+(i+1), box(len*0.8,0.05,0.12), M.steel, [x,0.545,z]);
+    part(chassis,'ballesta3_'+tag+'_'+(i+1), box(len*0.55,0.045,0.11), M.steel, [x,0.495,z]);
+    part(chassis,'grillete_'+tag+'_'+(i+1), box(0.06,0.2,0.16), M.dark, [x+len/2,0.66,z]);
+    part(chassis,'amortiguador_'+tag+'_'+(i+1), cyl(0.035,0.34,12), M.dark, [x-0.16,0.72,z+(i?-0.12:0.12)], [0,0,0.22]);
+  });
+});
+part(chassis,'eje_delantero', cyl(0.075,1.78,18), M.castIron, [AX_F,0.44,0], [Math.PI/2,0,0]);
+part(chassis,'eje_trasero', cyl(0.1,1.86,18), M.castIron, [AX_R,0.44,0], [Math.PI/2,0,0]);
+part(chassis,'diferencial', new THREE.SphereGeometry(0.24,26,20), M.castIron, [AX_R,0.44,0]);
+part(chassis,'diferencial_pinon', cyl(0.09,0.22,16), M.castIron, [AX_R+0.2,0.46,0], [0,0,Math.PI/2]);
+
+/* ═════════ ruedas ═════════ */
+function wheel(name,x,z,width,outward){
+  const g = new THREE.Group(); g.name = name;
+  const R = 0.445;
+  part(g,name+'_llanta', new THREE.CylinderGeometry(R,R,width,44,1,true), M.tire, [0,0,0], [Math.PI/2,0,0]);
+  [1,-1].forEach((s,i)=>{
+    part(g,name+'_flanco_'+(i+1), new THREE.TorusGeometry(R-0.055,0.058,14,44), M.tire, [0,0,s*(width/2-0.02)]);
+    part(g,name+'_pared_'+(i+1), new THREE.RingGeometry(0.245,R-0.02,40), M.tire, [0,0,s*width/2], [0,s>0?0:Math.PI,0]);
+  });
+  const nb = 36;
+  for (let i=0;i<nb;i++){
+    const a = i/nb*Math.PI*2;
+    part(g,name+'_taco_'+(i+1), box(0.042,0.022,width*0.8), M.tread,
+      [Math.cos(a)*(R-0.008),Math.sin(a)*(R-0.008),0], [0,0,a]);
+  }
+  const face = (outward?1:-1)*(width/2+0.008);
+  part(g,name+'_rin', cyl(0.25,width*0.92,34), M.rim, [0,0,0], [Math.PI/2,0,0]);
+  part(g,name+'_disco', cyl(0.235,0.03,34), M.rim, [0,0,face*0.9], [Math.PI/2,0,0]);
+  part(g,name+'_cubo', cyl(0.085,width+0.02,20), M.steel, [0,0,0], [Math.PI/2,0,0]);
+  part(g,name+'_tapacubo', new THREE.SphereGeometry(0.072,18,12,0,Math.PI*2,0,Math.PI/2), M.chrome,
+    [0,0,face*1.1], [outward?Math.PI/2:-Math.PI/2,0,0]);
+  for (let i=0;i<6;i++){
+    const a = i/6*Math.PI*2;
+    part(g,name+'_tuerca_'+(i+1), cyl(0.026,0.045,6), M.steel, [Math.cos(a)*0.145,Math.sin(a)*0.145,face*1.05], [Math.PI/2,0,0]);
+    const b = (i+0.5)/6*Math.PI*2;
+    part(g,name+'_ventana_'+(i+1), cyl(0.035,0.06,14), M.dark, [Math.cos(b)*0.19,Math.sin(b)*0.19,face*0.95], [Math.PI/2,0,0]);
+  }
+  g.position.set(x,0.445,z);
+  truck.add(g); return g;
+}
+const wheels = [
+  wheel('rueda_del_izq', AX_F, 0.84, 0.28, true),
+  wheel('rueda_del_der', AX_F,-0.84, 0.28, false),
+  wheel('rueda_tras_izq_ext', AX_R, 0.86, 0.22, true),
+  wheel('rueda_tras_izq_int', AX_R, 0.62, 0.22, false),
+  wheel('rueda_tras_der_int', AX_R,-0.62, 0.22, true),
+  wheel('rueda_tras_der_ext', AX_R,-0.86, 0.22, false),
+];
+
+/* ═════════ motor (bajo la cabina) ═════════ */
+const engine = new THREE.Group(); engine.name='motor'; engine.position.x = 0.10; truck.add(engine);
+part(engine,'bloque_motor', roundedBox(0.76,0.54,0.62,0.05), M.engine, [1.86,1.02,0]);
+part(engine,'carter_aceite', roundedBox(0.68,0.22,0.52,0.04), M.alum, [1.86,0.7,0]);
+part(engine,'tapon_carter', cyl(0.025,0.04,10), M.steel, [1.6,0.59,0]);
+part(engine,'culata', roundedBox(0.74,0.2,0.58,0.04), M.engine, [1.86,1.37,0]);
+part(engine,'tapa_valvulas', roundedBox(0.66,0.15,0.44,0.05), M.alum, [1.86,1.52,0]);
+for (let i=0;i<4;i++){
+  part(engine,'tapa_perno_'+(i+1), cyl(0.02,0.05,10), M.steel, [1.62+i*0.16,1.6,0.16]);
+  part(engine,'inyector_'+(i+1), cyl(0.033,0.17,14), M.steel, [1.62+i*0.16,1.56,-0.06]);
+  part(engine,'canaleta_inyector_'+(i+1), cyl(0.013,0.3,8), M.steel, [1.62+i*0.16,1.62,0.06], [Math.PI/2,0,0]);
+}
+part(engine,'riel_comun', cyl(0.035,0.68,14), M.steel, [1.86,1.67,-0.17], [0,0,Math.PI/2]);
+part(engine,'bomba_inyeccion', roundedBox(0.2,0.2,0.16,0.03), M.castIron, [2.12,1.3,-0.3]);
+part(engine,'multiple_admision', roundedBox(0.6,0.17,0.15,0.05), M.alum, [1.86,1.35,0.35]);
+part(engine,'filtro_aire', cyl(0.17,0.42,24), M.dark, [1.4,1.5,0.42], [0,0,Math.PI/2]);
+part(engine,'ducto_aire', cyl(0.06,0.45,14), M.rubber, [1.68,1.44,0.4], [0,0,Math.PI/2]);
+const turbo = new THREE.Group(); turbo.name='turbo'; engine.add(turbo);
+part(turbo,'turbo_caracol', new THREE.TorusGeometry(0.115,0.075,16,30), M.castIron, [1.6,1.18,-0.44], [0,Math.PI/2,0]);
+part(turbo,'turbo_centro', cyl(0.07,0.2,20), M.engine, [1.6,1.18,-0.44], [0,0,Math.PI/2]);
+part(turbo,'turbo_salida', cyl(0.05,0.22,14), M.steel, [1.6,1.34,-0.44]);
+part(turbo,'turbo_ducto', cyl(0.045,0.52,12), M.steel, [1.76,1.4,-0.32], [0,0.6,Math.PI/2]);
+part(engine,'multiple_escape', roundedBox(0.6,0.13,0.13,0.04), M.castIron, [1.86,1.24,-0.35]);
+for (let i=0;i<4;i++){
+  part(engine,'multiple_escape_runner_'+(i+1), cyl(0.045,0.2,14), M.castIron, [1.62+i*0.16,1.26,-0.26], [Math.PI/2,0,0]);
+  part(engine,'multiple_admision_runner_'+(i+1), cyl(0.04,0.2,14), M.alum, [1.62+i*0.16,1.34,0.26], [Math.PI/2,0,0]);
+}
+part(engine,'bomba_agua', cyl(0.11,0.14,22), M.alum, [2.28,1.12,0], [0,0,Math.PI/2]);
+part(engine,'polea_ciguenal', cyl(0.13,0.07,26), M.steel, [2.3,0.86,0], [0,0,Math.PI/2]);
+part(engine,'polea_bomba', cyl(0.09,0.06,22), M.steel, [2.36,1.12,0], [0,0,Math.PI/2]);
+part(engine,'alternador', cyl(0.09,0.23,20), M.alum, [2.26,1.32,0.3], [0,0,Math.PI/2]);
+part(engine,'polea_alternador', cyl(0.06,0.05,18), M.steel, [2.37,1.32,0.3], [0,0,Math.PI/2]);
+part(engine,'correa_distribucion', new THREE.TorusGeometry(0.21,0.017,10,44), M.rubber, [2.36,1.0,0], [0,Math.PI/2,0]);
+part(engine,'correa_ventilador', new THREE.TorusGeometry(0.17,0.015,10,40), M.rubber, [2.37,1.2,0.16], [0,Math.PI/2,0]);
+part(engine,'compresor_aire', cyl(0.07,0.19,18), M.castIron, [2.18,0.92,-0.3], [0,0,Math.PI/2]);
+part(engine,'filtro_aceite', cyl(0.07,0.18,20), M.red, [1.5,0.95,0.36], [0,0,Math.PI/2]);
+const fan = new THREE.Group(); fan.name='fan_clutch'; engine.add(fan);
+part(fan,'fanclutch_cuerpo', cyl(0.12,0.1,26), M.alum, [2.46,1.12,0], [0,0,Math.PI/2]);
+for (let i=0;i<8;i++){
+  const a = i/8*Math.PI*2;
+  part(fan,'aspa_'+(i+1), box(0.018,0.25,0.11), M.dark, [2.52,1.12+Math.cos(a)*0.21,Math.sin(a)*0.21], [a,0,0]);
+}
+part(engine,'radiador', roundedBox(0.09,0.62,0.9,0.03), M.dark, [2.68,1.2,0]);
+part(engine,'panal_radiador', box(0.03,0.52,0.8), M.alum, [2.73,1.2,0]);
+for (let i=0;i<16;i++) part(engine,'aleta_radiador_'+(i+1), box(0.035,0.5,0.012), M.steel, [2.745,1.2,-0.38+i*0.05]);
+part(engine,'manguera_superior', cyl(0.045,0.32,12), M.rubber, [2.52,1.46,0.18], [0,0,Math.PI/2]);
+part(engine,'manguera_inferior', cyl(0.05,0.32,12), M.rubber, [2.52,0.9,0.18], [0,0,Math.PI/2]);
+part(engine,'deposito_refrigerante', roundedBox(0.16,0.22,0.18,0.03), M.box, [2.42,1.52,-0.42]);
+/* empaques visibles entre bloque, culata y tapa de válvulas */
+part(engine,'empaque_culata', box(0.765,0.025,0.605), M.gasket, [1.86,1.265,0]);
+part(engine,'empaque_tapa_valvulas', box(0.675,0.02,0.455), M.gasket, [1.86,1.452,0]);
+part(engine,'empaque_escape', box(0.6,0.02,0.02), M.gasket, [1.86,1.24,-0.295]);
+part(engine,'empaque_carter', box(0.69,0.018,0.53), M.gasket, [1.86,0.804,0]);
+/* accesorios que dan escala y lectura al motor */
+part(engine,'varilla_aceite', cyl(0.012,0.3,8), M.steel, [1.52,1.2,0.28], [0,0,0.2]);
+part(engine,'sensor_map', roundedBox(0.07,0.07,0.06,0.015), M.dark, [1.72,1.44,0.4]);
+part(engine,'sensor_temperatura', cyl(0.022,0.07,10), M.brass, [2.16,1.42,0.22], [0,0,0.6]);
+part(engine,'arnes_sensores', cyl(0.012,0.5,8), M.rubber, [1.9,1.46,0.42], [0,0,Math.PI/2]);
+part(engine,'tolva_ventilador', new THREE.TorusGeometry(0.28,0.035,10,28), M.dark, [2.6,1.12,0], [0,Math.PI/2,0]);
+part(engine,'filtro_combustible', cyl(0.06,0.16,18), M.steel, [1.44,1.12,-0.34], [0,0,Math.PI/2]);
+part(engine,'motor_arranque', cyl(0.075,0.24,18), M.castIron, [1.6,0.9,-0.34], [0,0,Math.PI/2]);
+part(engine,'volante_campana', cyl(0.2,0.12,26), M.castIron, [1.5,1.0,0], [0,0,Math.PI/2]);
+for (let i=0;i<5;i++){
+  part(engine,'bloque_perno_'+(i+1), cyl(0.022,0.03,8), M.steel, [1.58+i*0.14,1.24,0.31], [Math.PI/2,0,0]);
+  part(engine,'carter_nervio_'+(i+1), box(0.02,0.16,0.5), M.alum, [1.6+i*0.13,0.72,0]);
+}
+
+/* ═════════ cabina (bascula hacia adelante) ═════════ */
+const HINGE = [3.02, 0.94];
+const cabPivot = new THREE.Group(); cabPivot.name='cabina_pivote';
+cabPivot.position.set(HINGE[0],HINGE[1],0);
+const cab = new THREE.Group(); cab.name='cabina';
+cab.position.set(-HINGE[0],-HINGE[1],0);
+cabPivot.add(cab); truck.add(cabPivot);
+
+/* concha de la cabina: silueta cab-over, morro corto y parabrisas muy inclinado */
+const CAB_W = 1.84;
+const CAB_BEV = 0.045;
+const CAB_PROFILE = [
+  [1.08,0.96],[2.74,0.96],[2.90,1.00],[3.00,1.10],[3.06,1.28],
+  [3.07,1.58],[3.04,1.76],[3.00,1.82],
+  [2.64,2.44],[2.56,2.52],[2.44,2.555],
+  [1.26,2.56],[1.13,2.50],[1.08,2.36]
+];
+part(cab,'cabina_concha', profile(CAB_PROFILE, CAB_W, CAB_BEV), M.cab, [0,0,0]);
+const SIDE = CAB_W/2 + CAB_BEV;   /* superficie lateral real ≈ 0.965 */
+const WS = 0.526;                 /* inclinación del parabrisas (rad) */
+
+/* parabrisas: plano inclinado apoyado sobre la silueta */
+part(cab,'parabrisas', roundedBox(0.05,0.66,1.62,0.05), M.glass, [2.846,2.145,0], [0,0,WS]);
+part(cab,'parabrisas_marco_inf', box(0.085,0.05,1.68), M.rubber, [3.012,1.858,0], [0,0,WS]);
+part(cab,'parabrisas_marco_sup', box(0.085,0.05,1.66), M.rubber, [2.680,2.432,0], [0,0,WS]);
+[[0.36,'izq'],[-0.36,'der']].forEach(([z,side])=>{
+  part(cab,'limpiaparabrisas_'+side, box(0.018,0.02,0.66), M.dark, [2.90,1.98,z], [0.1,0,WS]);
+  part(cab,'brazo_limpia_'+side, box(0.05,0.04,0.05), M.dark, [2.985,1.88,z-0.28]);
+});
+
+[1,-1].forEach(s=>{
+  const side = s>0 ? 'izq' : 'der';
+  /* vidrio de puerta + ventilete */
+  part(cab,'marco_ventana_'+side, roundedBox(0.94,0.48,0.014,0.05), M.rubber, [1.82,2.10,s*(SIDE-0.002)]);
+  part(cab,'ventana_'+side, roundedBox(0.89,0.43,0.026,0.04), M.glass, [1.82,2.10,s*(SIDE+0.012)]);
+  part(cab,'marco_ventilete_'+side, roundedBox(0.24,0.44,0.014,0.04), M.rubber, [2.42,2.13,s*(SIDE-0.002)]);
+  part(cab,'ventilete_'+side, roundedBox(0.19,0.39,0.026,0.03), M.glass, [2.42,2.13,s*(SIDE+0.012)]);
+  /* juntas de puerta */
+  part(cab,'junta_puerta_tras_'+side, box(0.014,1.46,0.01), M.rubber, [1.18,1.72,s*(SIDE+0.004)]);
+  part(cab,'junta_puerta_del_'+side, box(0.014,1.38,0.01), M.rubber, [2.58,1.70,s*(SIDE+0.004)]);
+  part(cab,'manija_'+side, roundedBox(0.16,0.05,0.035,0.016), M.chrome, [1.40,1.78,s*(SIDE+0.022)]);
+  /* estribo bajo la puerta */
+  part(cab,'estribo_marco_'+side, box(0.66,0.28,0.06), M.cab, [1.76,0.84,s*(SIDE-0.07)]);
+  part(cab,'estribo_'+side, box(0.58,0.05,0.26), M.steel, [1.76,0.68,s*(SIDE-0.06)]);
+  part(cab,'estribo_antideslizante_'+side, box(0.52,0.02,0.17), M.dark, [1.76,0.71,s*(SIDE-0.06)]);
+  /* guardabarro interior: tapa el hueco sobre la rueda delantera */
+  part(cab,'guardabarro_del_'+side, profile([[AX_F-0.6,0.96],[AX_F-0.58,0.84],[AX_F+0.58,0.84],[AX_F+0.6,0.96]], 0.34, 0.02), M.dark, [0,0,s*0.84]);
+  part(cab,'faldon_del_'+side, box(0.06,0.2,0.3), M.dark, [AX_F-0.62,0.76,s*0.84]);
+  /* espejo doble sobre brazo tubular */
+  part(cab,'brazo_espejo_v_'+side, cyl(0.018,0.6,12), M.dark, [2.78,2.06,s*1.155]);
+  part(cab,'brazo_espejo_sup_'+side, cyl(0.018,0.24,12), M.dark, [2.80,2.34,s*1.05], [Math.PI/2,0,0]);
+  part(cab,'brazo_espejo_inf_'+side, cyl(0.016,0.22,12), M.dark, [2.82,1.80,s*1.06], [Math.PI/2,0,0]);
+  part(cab,'espejo_'+side, roundedBox(0.05,0.28,0.15,0.03), M.dark, [2.78,2.14,s*1.19]);
+  part(cab,'espejo_lente_'+side, box(0.012,0.23,0.11), M.chrome, [2.748,2.14,s*1.19]);
+  part(cab,'espejo_aux_'+side, roundedBox(0.045,0.13,0.13,0.03), M.dark, [2.78,1.86,s*1.19]);
+  part(cab,'espejo_aux_lente_'+side, box(0.012,0.1,0.1), M.chrome, [2.751,1.86,s*1.19]);
+  /* faros grandes a los lados de la parrilla */
+  part(cab,'faro_carcasa_'+side, roundedBox(0.07,0.48,0.48,0.04), M.dark, [3.07,1.40,s*0.70]);
+  part(cab,'faro_reflector_'+side, cyl(0.16,0.03,22), M.chrome, [3.10,1.46,s*0.70], [0,0,Math.PI/2]);
+  part(cab,'faro_'+side, roundedBox(0.05,0.42,0.42,0.035), M.lamp, [3.112,1.40,s*0.70]);
+  part(cab,'faro_division_'+side, box(0.055,0.022,0.4), M.dark, [3.116,1.27,s*0.70]);
+  part(cab,'direccional_'+side, roundedBox(0.04,0.1,0.26,0.02), M.amber, [3.155,0.9,s*0.72]);
+  part(cab,'lateral_'+side, roundedBox(0.04,0.07,0.1,0.02), M.amber, [2.90,1.2,s*(SIDE-0.05)]);
+  part(cab,'marcador_techo_'+side, roundedBox(0.09,0.045,0.14,0.02), M.amber, [2.56,2.575,s*0.52]);
+});
+/* parrilla y frente */
+part(cab,'parrilla_marco', roundedBox(0.06,0.44,0.88,0.03), M.dark, [3.08,1.40,0]);
+for (let i=0;i<3;i++) part(cab,'parrilla_barra_'+(i+1), box(0.03,0.06,0.8), M.dark, [3.112,1.27+i*0.13,0]);
+part(cab,'emblema', roundedBox(0.03,0.09,0.26,0.03), M.chrome, [3.118,1.4,0]);
+/* parachoques */
+part(cab,'parachoques', profile([[3.02,0.70],[3.14,0.74],[3.16,0.90],[3.13,1.04],[3.02,1.06]], 1.96, 0.05), M.cab, [0,0,0]);
+part(cab,'parachoques_valance', box(0.1,0.18,1.88), M.dark, [3.08,0.62,0]);
+part(cab,'placa_soporte', box(0.03,0.21,0.47), M.dark, [3.17,0.9,0.3]);
+part(cab,'placa', box(0.02,0.17,0.42), M.box, [3.186,0.9,0.3]);
+part(cab,'gancho_izq', cyl(0.025,0.16,10), M.steel, [3.12,0.7,0.72], [0,0,Math.PI/2]);
+part(cab,'gancho_der', cyl(0.025,0.16,10), M.steel, [3.12,0.7,-0.72], [0,0,Math.PI/2]);
+
+/* ═════════ furgón ═════════ */
+const bodyG = new THREE.Group(); bodyG.name='furgon'; truck.add(bodyG);
+const BOX_W = 1.96;
+const BOX_PROFILE = [
+  [-2.62,1.02],[0.86,1.02],[0.92,1.08],[0.94,2.84],[0.88,2.94],[0.78,2.98],
+  [-2.54,2.98],[-2.62,2.92]
+];
+part(bodyG,'furgon_caja', profile(BOX_PROFILE, BOX_W, 0.05), M.box, [0,0,0]);
+part(bodyG,'furgon_zocalo', box(3.56,0.12,BOX_W+0.14), M.dark, [-0.86,0.98,0]);
+part(bodyG,'furgon_piso_perfil', box(3.56,0.08,BOX_W+0.16), M.alum, [-0.86,1.06,0]);
+part(bodyG,'furgon_techo_perfil', box(3.5,0.05,BOX_W+0.12), M.alum, [-0.86,3.0,0]);
+[1,-1].forEach(s=>{
+  const side = s>0?'izq':'der';
+  part(bodyG,'riel_sup_'+side, box(3.5,0.06,0.05), M.alum, [-0.86,2.93,s*(BOX_W/2+0.06)]);
+  part(bodyG,'riel_inf_'+side, box(3.5,0.06,0.05), M.alum, [-0.86,1.12,s*(BOX_W/2+0.06)]);
+  for (let i=0;i<5;i++) part(bodyG,'costura_'+side+'_'+(i+1), box(0.02,1.78,0.012), M.boxSide, [0.6-i*0.72,2.02,s*(BOX_W/2+0.055)]);
+  /* cinta reflectiva roja como en la foto */
+  part(bodyG,'reflectivo_sup_'+side, box(0.3,0.05,0.012), M.red, [0.72,2.82,s*(BOX_W/2+0.055)]);
+  for (let i=0;i<5;i++) part(bodyG,'reflectivo_inf_'+side+'_'+(i+1), box(0.34,0.05,0.012), M.red, [0.6-i*0.76,1.2,s*(BOX_W/2+0.055)]);
+  part(bodyG,'guardabarro_'+side, profile([[-0.84,1.02],[-0.82,0.78],[-2.06,0.78],[-2.08,1.02]], 0.44, 0.03), M.dark, [0,0,s*0.83]);
+  part(bodyG,'faldon_'+side, box(0.04,0.4,0.5), M.dark, [-2.36,0.32,s*0.84]);
+});
+/* puertas traseras */
+part(bodyG,'marco_trasero', profile([[-2.62,1.02],[-2.56,1.02],[-2.56,2.98],[-2.62,2.98]], BOX_W+0.08, 0.02), M.alum, [0,0,0]);
+[1,-1].forEach(s=>{
+  const side = s>0?'izq':'der';
+  part(bodyG,'puerta_trasera_'+side, roundedBox(0.06,1.82,0.92,0.03), M.box, [-2.66,2.0,s*0.48]);
+  [0.26,0.7].forEach((z,i)=>part(bodyG,'varilla_'+side+'_'+(i+1), cyl(0.022,1.7,12), M.steel, [-2.71,2.0,s*z]));
+  part(bodyG,'manija_'+side, roundedBox(0.06,0.14,0.07,0.02), M.steel, [-2.74,1.62,s*0.26]);
+  [1.3,2.0,2.7].forEach((y,i)=>part(bodyG,'bisagra_'+side+'_'+(i+1), box(0.08,0.14,0.07), M.steel, [-2.66,y,s*0.93]));
+  part(bodyG,'stop_carcasa_'+side, roundedBox(0.06,0.26,0.2,0.02), M.dark, [-2.66,0.78,s*0.78]);
+  part(bodyG,'stop_'+side, box(0.03,0.2,0.16), M.red, [-2.70,0.78,s*0.78]);
+  part(bodyG,'reversa_'+side, box(0.03,0.07,0.14), M.lamp, [-2.70,0.62,s*0.78]);
+  part(bodyG,'reflectivo_puerta_'+side, box(0.02,0.05,0.7), M.red, [-2.755,1.16,s*0.5]);
+});
+part(bodyG,'parachoques_trasero', box(0.14,0.15,1.96), M.steel, [-2.74,0.5,0]);
+[0.6,-0.6].forEach((z,i)=>part(bodyG,'soporte_paracho_'+(i+1), box(0.3,0.3,0.09), M.dark, [-2.6,0.62,z]));
+
+/* luz de bahía: se enciende al levantar la cabina para que el motor se lea */
+const bayLight = new THREE.PointLight(0xfff3e0, 0, 4.2, 2);
+bayLight.position.set(2.0, 2.2, 0.6);
+truck.add(bayLight);
+
+/* ═════════ piezas interactivas del motor ═════════ */
+/* cada pieza apunta a una categoría real del catálogo (cat en catalog-data.js) */
+const PARTS = [
+  { cat:'empaques',  label:'Empaques y juntas',       nota:'Culata · tapa válvulas · escape', cam:[1.45,2.35,2.85], tgt:[1.9,1.28,0],
+    match:['empaque_'] },
+  { cat:'pistones',  label:'Bloque, pistones y camisas', nota:'Bloque · cárter',            cam:[1.7,2.0,3.0], tgt:[1.95,1.02,0],
+    match:['bloque_motor','carter_aceite','tapon_carter','bloque_perno','carter_nervio','volante_campana'] },
+  { cat:'asientos',  label:'Culata y asientos',       nota:'Culata · tapa de válvulas',    cam:[1.5,2.5,2.8], tgt:[1.9,1.42,0],
+    match:['culata','tapa_valvulas','tapa_perno'] },
+  { cat:'inyectores',label:'Inyectores y bomba',      nota:'Riel · cañerías · filtro',      cam:[1.6,2.5,2.75], tgt:[1.92,1.48,0],
+    match:['inyector','canaleta_inyector','riel_comun','bomba_inyeccion','filtro_combustible'] },
+  { cat:'turbo',     label:'Turbo y múltiples',       nota:'Admisión · escape · ductos',    cam:[2.0,2.2,-3.0], tgt:[1.9,1.2,-0.1],
+    match:['turbo_','multiple_','filtro_aire','ducto_aire'] },
+  { cat:'bombas',    label:'Bomba de agua y radiador',nota:'Refrigeración',                cam:[2.2,2.0,3.0], tgt:[2.5,1.2,0],
+    match:['bomba_agua','polea_bomba','radiador','panal_radiador','aleta_radiador','manguera_','deposito_refrigerante'] },
+  { cat:'fanclutch', label:'Fan clutch y ventilador', nota:'Aspas · tolva',                cam:[2.2,1.9,2.9], tgt:[2.5,1.12,0],
+    match:['fanclutch_','aspa_','tolva_ventilador'] },
+  { cat:'correas',   label:'Correas y poleas',        nota:'Alternador · compresor',       cam:[2.1,1.9,2.8], tgt:[2.4,1.1,0.05],
+    match:['correa_','polea_ciguenal','polea_alternador','alternador','compresor_aire'] },
+  { cat:'sensores',  label:'Sensores',                nota:'MAP · temperatura · arnés',    cam:[1.55,2.1,2.75], tgt:[1.8,1.36,0.25],
+    match:['sensor_','arnes_sensores'] },
+  { cat:'otros',     label:'Filtros y varios',        nota:'Aceite · varilla · arranque',  cam:[1.6,2.1,2.9], tgt:[1.6,1.05,0.1],
+    match:['filtro_aceite','varilla_aceite','motor_arranque'] },
+];
+const engineMeshes = [];
+PARTS.forEach(p=>{ p.meshes = []; });
+engine.traverse(o=>{
+  if (!o.isMesh) return;
+  const p = PARTS.find(q => q.match.some(m => o.name.startsWith(m)));
+  if (!p) return;
+  o.material = o.material.clone();   /* material propio: el resaltado no contagia */
+  o.userData.part = p;
+  p.meshes.push(o); engineMeshes.push(o);
+});
+
+/* un solo punto para la carrocería: el motor se toca directamente */
+const HOTSPOTS = [
+  { id:'furgon', cat:'otros', label:'Carrocería y furgón', pos:[-1.05,2.3,1.06], engine:false, off:[0,-10] },
+];
+const pins = new THREE.Group(); pins.name='puntos_interactivos'; truck.add(pins);
+HOTSPOTS.forEach(h=>{
+  const m = part(pins,'punto_'+h.id, new THREE.SphereGeometry(0.06,18,14), M.hot, h.pos);
+  m.userData.hot = h; h.mesh = m;
+});
+
+/* centrar y montar */
+const bb = new THREE.Box3().setFromObject(truck);
+const c = bb.getCenter(new THREE.Vector3());
+truck.position.set(-c.x, -bb.min.y, -c.z);
+const root = new THREE.Group(); root.name='camion_diesel_cabina_adelantada';
+root.add(truck);
+stage.setObject(root);
+floor.position.y = -0.002;
+/* encuadre inicial 3/4 delantero, como la foto de referencia */
+camera.position.set(5.9, 2.0, 4.4);
+controls.target.set(0.9, 1.5, 0);
+controls.update();
+
+/* ───────── interacción ───────── */
+const dom = renderer.domElement;
+if (stage._ro) stage._ro.observe(stage);
+new ResizeObserver(()=>{
+  const w = stage.clientWidth||1, hh = stage.clientHeight||1;
+  renderer.setSize(w,hh); camera.aspect = w/hh; camera.updateProjectionMatrix();
+}).observe(stage);
+
+const center = new THREE.Vector3(0, 1.55, 0);
+const VIEWS = {
+  tres:   [6.2, 3.2, 6.6],
+  frente: [9.8, 2.4, 1.4],
+  lado:   [0.4, 2.1, 9.4],
+  atras:  [-9.2, 3.0, -2.2],
+  motor:  [1.5, 2.5, 4.7],
+};
+let camFrom=null, camTo=null, tgtFrom=null, tgtTo=null, camT=1;
+function flyTo(key, target){
+  const v = VIEWS[key] || VIEWS.tres;
+  flyRaw(v, (target||center).toArray ? target.toArray() : (target||center));
+}
+function flyRaw(camArr, tgtArr){
+  camFrom = camera.position.clone(); camTo = new THREE.Vector3().fromArray(camArr);
+  tgtFrom = controls.target.clone();
+  tgtTo = tgtArr ? new THREE.Vector3().fromArray(tgtArr) : center.clone();
+  camT = 0; controls.autoRotate = false; spinBtn.classList.remove('on');
+}
+const ease = t => t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+
+let tilt = 0, tiltTarget = 0;
+const cabBtn = document.getElementById('btnCab');
+const spinBtn = document.getElementById('btnSpin');
+cabBtn.addEventListener('click', ()=>{
+  tiltTarget = tiltTarget > 0 ? 0 : 0.95;
+  const up = tiltTarget > 0;
+  cabBtn.textContent = up ? 'Bajar cabina' : 'Levantar cabina';
+  cabBtn.classList.toggle('on', up);
+  if (up){ flyTo('motor', new THREE.Vector3(1.9,1.35,0)); toast('Cabina levantada — toca una pieza del motor'); }
+  else { selPart = null; hoverPart = null; refreshGlow(); syncRows(); }
+});
+spinBtn.addEventListener('click', ()=>{
+  controls.autoRotate = !controls.autoRotate;
+  spinBtn.classList.toggle('on', controls.autoRotate);
+});
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click', ()=>flyTo(b.dataset.view)));
+
+const ui = document.getElementById('ui');
+HOTSPOTS.forEach(h=>{
+  const el = document.createElement('button');
+  el.className = 'pin'; el.innerHTML = '<span class="dot"></span>' + h.label;
+  el.addEventListener('click', ()=>pick(h));
+  ui.appendChild(el); h.el = el;
+});
+function pick(h){
+  parent.postMessage({ type:'sds-hotspot', id:h.cat || h.id, label:h.label }, '*');
+  toast('Filtrando catálogo: ' + h.label);
+  flyTo('atras', new THREE.Vector3(-1.0,1.9,0));
+}
+
+/* ── piezas del motor: lista, resaltado y selección ── */
+const panel = document.getElementById('plist');
+const tip = document.getElementById('tip');
+let hoverPart = null, selPart = null;
+function refreshGlow(){
+  PARTS.forEach(p=>{
+    const on = p === selPart || p === hoverPart;
+    const hex = p === selPart ? 0xc01010 : 0x5a1008;
+    p.meshes.forEach(m=>m.material.emissive.setHex(on ? hex : 0x000000));
+  });
+}
+function syncRows(){
+  PARTS.forEach(p=>p.row.classList.toggle('on', p === selPart));
+}
+function pickPart(p, fromList){
+  selPart = p; hoverPart = null;
+  refreshGlow(); syncRows();
+  parent.postMessage({ type:'sds-hotspot', id:p.cat, label:p.label }, '*');
+  toast('Filtrando catálogo: ' + p.label);
+  if (tiltTarget === 0) { tiltTarget = 0.95; cabBtn.textContent = 'Bajar cabina'; cabBtn.classList.add('on'); }
+  if (fromList && p.cam) flyRaw(p.cam, p.tgt);
+}
+PARTS.forEach(p=>{
+  const b = document.createElement('button');
+  b.className = 'prow';
+  b.innerHTML = '<i></i><span>' + p.label + '<small>' + p.nota + '</small></span>';
+  b.addEventListener('mouseenter', ()=>{ if (p !== selPart){ hoverPart = p; refreshGlow(); } });
+  b.addEventListener('mouseleave', ()=>{ if (hoverPart === p){ hoverPart = null; refreshGlow(); } });
+  b.addEventListener('click', ()=>pickPart(p, true));
+  panel.appendChild(b); p.row = b;
+});
+let toastT;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+let dragged = false;
+function toPointer(e){
+  const r = dom.getBoundingClientRect();
+  ptr.x = ((e.clientX - r.left)/r.width)*2 - 1;
+  ptr.y = -((e.clientY - r.top)/r.height)*2 + 1;
+}
+dom.addEventListener('pointerdown', e=>{ toPointer(e); dragged = false; });
+dom.addEventListener('pointermove', e=>{
+  dragged = e.buttons ? true : dragged;
+  toPointer(e);
+  ray.setFromCamera(ptr, camera);
+  const pin = ray.intersectObjects(pins.children, false)[0];
+  let pmesh = null;
+  if (!pin && tilt > 0.45){
+    const hit = ray.intersectObjects(engineMeshes, false)[0];
+    /* que no atraviese la cabina ni el chasis */
+    if (hit){
+      const first = ray.intersectObject(truck, true)[0];
+      if (first && first.object.userData.part) pmesh = first.object;
+    }
+  }
+  const p = pmesh ? pmesh.userData.part : null;
+  if (p !== hoverPart && p !== selPart){ hoverPart = p; refreshGlow(); }
+  else if (!p && hoverPart){ hoverPart = null; refreshGlow(); }
+  dom.style.cursor = (pin || p) ? 'pointer' : '';
+  if (p){
+    tip.innerHTML = p.label + '<small>Ver repuestos ›</small>';
+    tip.style.left = e.clientX + 'px'; tip.style.top = e.clientY + 'px';
+    tip.classList.add('show');
+  } else tip.classList.remove('show');
+});
+dom.addEventListener('pointerleave', ()=>{ tip.classList.remove('show'); if (hoverPart){ hoverPart = null; refreshGlow(); } });
+dom.addEventListener('pointerup', e=>{
+  if (dragged) return;
+  toPointer(e);
+  ray.setFromCamera(ptr, camera);
+  const pin = ray.intersectObjects(pins.children, false)[0];
+  if (pin){ pick(pin.object.userData.hot); return; }
+  if (tilt <= 0.45) return;
+  const first = ray.intersectObject(truck, true)[0];
+  if (first && first.object.userData.part) pickPart(first.object.userData.part, false);
+});
+
+window.addEventListener('message', ev=>{
+  const d = ev.data || {};
+  if (d.type !== 'sds-truck') return;
+  if (d.action === 'view') flyTo(d.view);
+  if (d.action === 'focus'){
+    const p = PARTS.find(x=>x.cat === d.id);
+    if (p){ pickPart(p, true); return; }
+    const h = HOTSPOTS.find(x=>x.id === d.id);
+    if (h){ flyTo('atras', new THREE.Vector3(-1.0,1.9,0)); toast(h.label); }
+  }
+});
+
+/* loop: animación de cabina + proyección de etiquetas */
+const v = new THREE.Vector3(), dir = new THREE.Vector3(), wp = new THREE.Vector3();
+let tick = 0;
+function occluded(mesh){
+  mesh.getWorldPosition(wp);
+  dir.copy(wp).sub(camera.position);
+  const dist = dir.length();
+  ray.set(camera.position, dir.normalize());
+  ray.far = dist - 0.08;
+  const hit = ray.intersectObject(truck, true).find(x => x.object !== mesh && x.object.visible);
+  ray.far = Infinity;
+  return !!hit;
+}
+function frame(){
+  tick++;
+  const now = performance.now();
+  const dt = Math.min((now - (frame.t || now)) / 1000, 0.25);
+  frame.t = now;
+  tilt += (tiltTarget - tilt) * Math.min(1, dt * 5.5);
+  cabPivot.rotation.z = -tilt;
+  bayLight.intensity = Math.max(0, (tilt - 0.35)) * 9;
+  if (camT < 1){
+    camT = Math.min(camT + dt * 0.9, 1);
+    const k = ease(camT);
+    camera.position.lerpVectors(camFrom, camTo, k);
+    controls.target.lerpVectors(tgtFrom, tgtTo, k);
+  }
+  const open = tilt > 0.45;
+  const rect = dom.getBoundingClientRect();
+  HOTSPOTS.forEach(h=>{
+    const show = h.engine ? open : true;
+    h.mesh.visible = show;
+    if (show && tick % 8 === 0) h.blocked = occluded(h.mesh);
+    if (!show) h.blocked = false;
+    v.set(h.pos[0],h.pos[1],h.pos[2]).add(truck.position).project(camera);
+    const behind = v.z > 1;
+    h.el.classList.toggle('hidden', !show || behind || h.blocked);
+    h.el.style.left = (rect.left + (v.x*0.5+0.5)*rect.width) + 'px';
+    h.el.style.top  = (rect.top + (-v.y*0.5+0.5)*rect.height) + 'px';
+    const o = h.off || [0,0];
+    h.el.style.transform = 'translate(calc(-50% + '+o[0]+'px), calc(-140% + '+o[1]+'px))';
+  });
+}
+/* un solo tick: anima, actualiza controles y dibuja. Se maneja con rAF y con
+   un intervalo de respaldo, porque el visor incrustado puede pausar rAF. */
+function tickAll(){
+  try { frame(); } catch(e){ console.warn(e); }
+  controls.update();
+  renderer.render(scene, camera);
+}
+renderer.setAnimationLoop(null);
+stage._loop = tickAll;
+let lastT = 0;
+function rafLoop(t){ requestAnimationFrame(rafLoop); if (t - lastT > 12){ lastT = t; tickAll(); } }
+requestAnimationFrame(rafLoop);
+setInterval(()=>{ if (performance.now() - lastT > 60){ lastT = performance.now(); tickAll(); } }, 60);
+tickAll();
+setTimeout(()=>toast('Toca “Levantar cabina” para ver el motor'), 1200);
+</script>
+</body>
+</html>
